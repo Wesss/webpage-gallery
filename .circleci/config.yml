@@ -29,6 +29,7 @@ jobs:
                 name: TODO
                 command: |
                     ./aws.sh
+                    echo "hello?"
 
 
 workflows:
