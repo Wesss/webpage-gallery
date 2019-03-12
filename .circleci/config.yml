@@ -7,6 +7,12 @@ _environemnt:
         # WORKSPACE_PATH: *WORKSPACE_PATH
         PROJECT_PATH: *PROJECT_PATH
 
+_conditions:
+    cond_master: &cond_master
+        filters:
+            branches:
+                only: master
+
 _steps:
     # persist_build_to_workspace: &persist_build_to_workspace
     #     persist_to_workspace:
@@ -39,4 +45,5 @@ workflows:
     version: 2
     on_push:
         jobs:
-            - upload_webpublic
+            - upload_webpublic:
+                <<: *cond_master
