@@ -40,7 +40,6 @@ jobs:
                 command: |
                     aws s3 cp --recursive web-public/ s3://wes-develop.com/
 
-
 workflows:
     version: 2
     on_push:
