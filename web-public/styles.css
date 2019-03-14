@@ -1,9 +1,19 @@
 .Body {
+}
+
+.Landing {
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: 500px;
+}
+
+.Landing .Landing-focus {
+    place-self: center;
     text-align: center;
 }
 
 .Headline {
-    font-family: "Trebuchet MS", Helvetica, sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
     margin: 0;
 }
 
