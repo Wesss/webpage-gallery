@@ -1,0 +1,16 @@
+.Body {
+    text-align: center;
+}
+
+.Headline {
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+    margin: 0;
+}
+
+.Headline--1 {
+    font-size: 64px;
+}
+
+.Headline--2 {
+    font-size: 48px;
+}
