@@ -32,13 +32,11 @@ jobs:
         steps:
             - checkout
             - run:
-                name: Clear web-public assets
+                name: Sync web-public assets
                 command: |
-                    aws s3 rm --recursive s3://wes-develop.com/
-            - run:
-                name: Upload web-public assets
-                command: |
-                    aws s3 cp --recursive web-public/ s3://wes-develop.com/
+                    # touch everything to ensure custom headers are synced on all files
+                    find . -type f -exec touch '{}' \;
+                    aws s3 sync web-public/ s3://wes-develop.com/ --recursive --delete --cache-control no-cache
 
 workflows:
     version: 2
