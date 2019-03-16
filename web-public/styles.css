@@ -35,19 +35,36 @@
 }
 
 .Button {
-    background-color: #00000000;
+    background-color: #30354000;
     color: #303540;
     border: 1px solid #303540;
     border-radius: 4px;
     padding: 8px 12px;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 24px;
+    cursor:pointer;
+}
+
+.Button:hover {
+    background-color: #30354020;
+}
+
+.Button:active {
+    background-color: #30354080;
 }
 
 .Button--inverted {
-    background-color: #00000000;
+    background-color: #ffffff00;
     color: #ffffff;
     border: 1px solid #ffffff;
+}
+
+.Button--inverted:hover {
+    background-color: #ffffff20;
+}
+
+.Button--inverted:active {
+    background-color: #ffffff80;
 }
 
 .u-marginBot-small {
