@@ -1,10 +1,13 @@
 .Body {
+    margin: 0;
 }
 
 .Landing {
     display: grid;
     grid-template-columns: auto;
     grid-template-rows: 500px;
+
+    background-color: #303540;
 }
 
 .Landing .Landing-focus {
@@ -14,7 +17,13 @@
 
 .Headline {
     font-family: Arial, Helvetica, sans-serif;
+    font-weight: normal;
     margin: 0;
+    color: #303540;
+}
+
+.Headline--inverted {
+    color: #ffffff;
 }
 
 .Headline--1 {
@@ -23,4 +32,32 @@
 
 .Headline--2 {
     font-size: 48px;
+}
+
+.Button {
+    background-color: #00000000;
+    color: #303540;
+    border: 1px solid #303540;
+    border-radius: 4px;
+    padding: 8px 12px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 24px;
+}
+
+.Button--inverted {
+    background-color: #00000000;
+    color: #ffffff;
+    border: 1px solid #ffffff;
+}
+
+.u-marginBot-small {
+    margin-bottom: 15px;
+}
+
+.u-marginBot-medium {
+    margin-bottom: 25px;
+}
+
+.u-marginBot-large {
+    margin-bottom: 40px;
 }
