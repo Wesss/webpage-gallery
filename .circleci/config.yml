@@ -24,7 +24,7 @@ _steps:
     #         at: *WORKSPACE_PATH
 
 jobs:
-    upload:
+    build:
         docker:
             - image: node:8.11.4
         environment:
