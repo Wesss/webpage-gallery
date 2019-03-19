@@ -12,6 +12,9 @@ _environemnt:
         PROJECT_PATH: *PROJECT_PATH_CIRCLECI
 
 _conditions:
+    cond_on_branch: &cond_on_branch
+        # default condition is on any branch and no tags
+        {}
     cond_master: &cond_master
         filters:
             branches:
@@ -73,16 +76,20 @@ jobs:
             - *attach_workspace
             - *extract_dist_from_workspace
             - run:
+                name: Install aws cli
+                command: |
+                    pip3 install awscli==1.16.127 --user
+            - run:
                 name: Sync Webserver
                 command: |
-                    aws s3 sync dist/ s3://wes-develop.com/ --delete
+                    ~/.local/bin/aws s3 sync dist/ s3://wes-develop.com/ --delete
 
 workflows:
     version: 2
     on_push:
         jobs:
             - build:
-                <<: *cond_master
+                <<: *cond_on_branch
             - upload:
                 <<: *cond_master
                 requires:
