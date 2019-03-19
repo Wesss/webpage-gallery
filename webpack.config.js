@@ -1,4 +1,5 @@
 const path = require('path');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     entry: './src/hello.js',
@@ -13,5 +14,11 @@ module.exports = {
                 use: ["style-loader", "css-loader"]
             }
         ]
-    }
+    },
+    plugins: [
+        new HtmlWebpackPlugin({
+            // hash: true,
+            filename: 'index.html'
+        })
+   ]
 };
