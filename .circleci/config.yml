@@ -24,7 +24,18 @@ _steps:
     #         at: *WORKSPACE_PATH
 
 jobs:
-    upload_webpublic:
+    upload:
+        docker:
+            - image: node:8.11.4
+        environment:
+            <<: *environment
+        steps:
+            - checkout
+            - run:
+                name: Build Application
+                command: |
+                    npx webpack
+    upload:
         docker:
             - image: mesosphere/aws-cli:1.14.5
         environment:
@@ -32,13 +43,17 @@ jobs:
         steps:
             - checkout
             - run:
-                name: Sync web-public assets
+                name: Sync Webserver
                 command: |
-                    aws s3 sync web-public/ s3://wes-develop.com/ --delete
+                    aws s3 sync dist/ s3://wes-develop.com/ --delete
 
 workflows:
     version: 2
     on_push:
         jobs:
-            - upload_webpublic:
+            - build:
                 <<: *cond_master
+            - upload:
+                <<: *cond_master
+                requires:
+                    - build
