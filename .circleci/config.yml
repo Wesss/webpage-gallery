@@ -32,6 +32,11 @@ jobs:
         steps:
             - checkout
             - run:
+                name: Install Packages
+                command: |
+                    npm install npm@6.9.0
+                    npm ci
+            - run:
                 name: Build Application
                 command: |
                     npx webpack
