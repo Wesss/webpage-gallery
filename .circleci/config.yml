@@ -34,9 +34,7 @@ jobs:
             - run:
                 name: Sync web-public assets
                 command: |
-                    # touch everything to ensure custom headers are synced on all files
-                    find . -type f -exec touch '{}' \;
-                    aws s3 sync web-public/ s3://wes-develop.com/ --delete --cache-control no-cache
+                    aws s3 sync web-public/ s3://wes-develop.com/ --delete
 
 workflows:
     version: 2
