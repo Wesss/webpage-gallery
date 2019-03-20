@@ -10,6 +10,12 @@ module.exports = {
     module: {
         rules: [
             {
+                test: /\.js$/,
+                exclude: /(node_modules)/,
+                loader: "babel-loader",
+                options: { presets: ["@babel/env"] }
+            },
+            {
                 test: /\.css$/,
                 use: ["style-loader", "css-loader"]
             }
@@ -18,7 +24,7 @@ module.exports = {
     plugins: [
         new HtmlWebpackPlugin({
             hash: true,
-            inject: 'head',
+            inject: 'body',
             template: './src/index.html',
             filename: 'index.html'
         })
