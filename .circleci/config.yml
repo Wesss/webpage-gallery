@@ -63,7 +63,7 @@ jobs:
             - run:
                 name: Build Application
                 command: |
-                    npx webpack
+                    npx webpack --mode production
             - *copy_dist_to_workspace
             - *persist_workspace
     upload:
