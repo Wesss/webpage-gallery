@@ -1,116 +1,116 @@
 version: 2
 
 _environemnt:
-    WORKSPACE_PATH: &WORKSPACE_PATH /tmp/workspace
-    PROJECT_PATH_DEFAULT: &PROJECT_PATH_DEFAULT /root/project
-    PROJECT_PATH_CIRCLECI: &PROJECT_PATH_CIRCLECI /home/circleci/project
-    environment_default: &environment_default
-        WORKSPACE_PATH: *WORKSPACE_PATH
-        PROJECT_PATH: *PROJECT_PATH_DEFAULT
-    environment_circleci: &environment_circleci
-        WORKSPACE_PATH: *WORKSPACE_PATH
-        PROJECT_PATH: *PROJECT_PATH_CIRCLECI
+  WORKSPACE_PATH: &WORKSPACE_PATH /tmp/workspace
+  PROJECT_PATH_DEFAULT: &PROJECT_PATH_DEFAULT /root/project
+  PROJECT_PATH_CIRCLECI: &PROJECT_PATH_CIRCLECI /home/circleci/project
+  environment_default: &environment_default
+    WORKSPACE_PATH: *WORKSPACE_PATH
+    PROJECT_PATH: *PROJECT_PATH_DEFAULT
+  environment_circleci: &environment_circleci
+    WORKSPACE_PATH: *WORKSPACE_PATH
+    PROJECT_PATH: *PROJECT_PATH_CIRCLECI
 
 _conditions:
-    cond_on_branch: &cond_on_branch
-        # default condition is on any branch and no tags
-        {}
-    cond_master: &cond_master
-        filters:
-            branches:
-                only: master
+  cond_on_branch: &cond_on_branch
+    # default condition is on any branch and no tags
+    {}
+  cond_master: &cond_master
+    filters:
+      branches:
+        only: master
 
 _steps:
-    # common setup
-    make_dirs: &make_dirs
-        run:
-            name: Make Directories
-            command: mkdir $WORKSPACE_PATH
-    # npm
-    update_npm: &update_npm
-        run:
-            name: Update npm
-            command: npm install npm@6.9.0 -g
-    install_npm_packages: &install_npm_packages
-        run:
-            name: Install npm packages
-            command: npm ci
+  # common setup
+  make_dirs: &make_dirs
+    run:
+      name: Make Directories
+      command: mkdir $WORKSPACE_PATH
+  # npm
+  update_npm: &update_npm
+    run:
+      name: Update npm
+      command: npm install npm@6.9.0 -g
+  install_npm_packages: &install_npm_packages
+    run:
+      name: Install npm packages
+      command: npm ci
 
-    # workspace
-    copy_dist_to_workspace: &copy_dist_to_workspace
-        run:
-            name: Copy Dist into Workspace
-            command: |
-                cp -r $PROJECT_PATH/dist/ $WORKSPACE_PATH/dist/
-    persist_workspace: &persist_workspace
-        persist_to_workspace:
-            root: *WORKSPACE_PATH
-            paths:
-                - dist
-    attach_workspace: &attach_workspace
-        attach_workspace:
-            at: *WORKSPACE_PATH
-    extract_dist_from_workspace: &extract_dist_from_workspace
-        run:
-            name: Extract Dist from Workspace
-            command: |
-                cp -r $WORKSPACE_PATH/dist/ $PROJECT_PATH/dist/
+  # workspace
+  copy_dist_to_workspace: &copy_dist_to_workspace
+    run:
+      name: Copy Dist into Workspace
+      command: |
+        cp -r $PROJECT_PATH/dist/ $WORKSPACE_PATH/dist/
+  persist_workspace: &persist_workspace
+    persist_to_workspace:
+      root: *WORKSPACE_PATH
+      paths:
+        - dist
+  attach_workspace: &attach_workspace
+    attach_workspace:
+      at: *WORKSPACE_PATH
+  extract_dist_from_workspace: &extract_dist_from_workspace
+    run:
+      name: Extract Dist from Workspace
+      command: |
+        cp -r $WORKSPACE_PATH/dist/ $PROJECT_PATH/dist/
 
 jobs:
-    build:
-        docker:
-            # TODO circleci/?
-            - image: node:8.11.4
-        environment:
-            <<: *environment_default
-        steps:
-            - checkout
-            - *make_dirs
-            - *update_npm
-            - *install_npm_packages
-            - run:
-                name: Build Application
-                command: npm run build-prod
-            - *copy_dist_to_workspace
-            - *persist_workspace
-    test:
-        docker:
-            - image: node:8.11.4
-        environment:
-            <<: *environment_default
-        steps:
-            - checkout
-            - *update_npm
-            - *install_npm_packages
-            - run:
-                name: Unit Tests
-                command: npm run test
-    upload:
-        docker:
-            - image: circleci/python:3.7.2
-        environment:
-            <<: *environment_circleci
-        steps:
-            - *make_dirs
-            - *attach_workspace
-            - *extract_dist_from_workspace
-            - run:
-                name: Install aws cli
-                command: pip3 install awscli==1.16.127 --user
-            - run:
-                name: Sync Webserver
-                command: ~/.local/bin/aws s3 sync dist/ s3://wes-develop.com/ --delete
+  build:
+    docker:
+      # TODO circleci/?
+      - image: node:8.11.4
+    environment:
+      <<: *environment_default
+    steps:
+      - checkout
+      - *make_dirs
+      - *update_npm
+      - *install_npm_packages
+      - run:
+        name: Build Application
+        command: npm run build-prod
+      - *copy_dist_to_workspace
+      - *persist_workspace
+  test:
+    docker:
+      - image: node:8.11.4
+    environment:
+      <<: *environment_default
+    steps:
+      - checkout
+      - *update_npm
+      - *install_npm_packages
+      - run:
+        name: Unit Tests
+        command: npm run test
+  upload:
+    docker:
+      - image: circleci/python:3.7.2
+    environment:
+      <<: *environment_circleci
+    steps:
+      - *make_dirs
+      - *attach_workspace
+      - *extract_dist_from_workspace
+      - run:
+        name: Install aws cli
+        command: pip3 install awscli==1.16.127 --user
+      - run:
+        name: Sync Webserver
+        command: ~/.local/bin/aws s3 sync dist/ s3://wes-develop.com/ --delete
 
 workflows:
-    version: 2
-    on_push:
-        jobs:
-            - build:
-                <<: *cond_on_branch
-            - test:
-                <<: *cond_on_branch
-            - upload:
-                <<: *cond_master
-                requires:
-                    - build
-                    - test
+  version: 2
+  on_push:
+    jobs:
+      - build:
+        <<: *cond_on_branch
+      - test:
+        <<: *cond_on_branch
+      - upload:
+        <<: *cond_master
+        requires:
+          - build
+          - test

@@ -1,120 +1,120 @@
 :root {
-    --rgb-light: 255, 255, 255;
-    --rgb-dark: 48, 53, 64;
+  --rgb-light: 255, 255, 255;
+  --rgb-dark: 48, 53, 64;
 
-    --alpha-transparent: 0.0;
-    --alpha-tinted: 0.1;
-    --alpha-translucent: 0.2;
-    --alpha-opaque: 1.0;
+  --alpha-transparent: 0.0;
+  --alpha-tinted: 0.1;
+  --alpha-translucent: 0.2;
+  --alpha-opaque: 1.0;
 
-    --color-dark: rgba(var(--rgb-dark));
-    --color-dark-translucent: rgba(var(--rgb-dark), var(--alpha-translucent));
-    --color-dark-tinted: rgba(var(--rgb-dark), var(--alpha-tinted));
+  --color-dark: rgba(var(--rgb-dark));
+  --color-dark-translucent: rgba(var(--rgb-dark), var(--alpha-translucent));
+  --color-dark-tinted: rgba(var(--rgb-dark), var(--alpha-tinted));
 
-    --color-light: rgba(var(--rgb-light));
-    --color-light-translucent: rgba(var(--rgb-light), var(--alpha-translucent));
-    --color-light-tinted: rgba(var(--rgb-light), var(--alpha-tinted));
+  --color-light: rgba(var(--rgb-light));
+  --color-light-translucent: rgba(var(--rgb-light), var(--alpha-translucent));
+  --color-light-tinted: rgba(var(--rgb-light), var(--alpha-tinted));
 
-    --color-transparent: rgba(0, 0, 0, var(--alpha-transparent));
+  --color-transparent: rgba(0, 0, 0, var(--alpha-transparent));
 }
 
 .Body {
-    margin: 0;
+  margin: 0;
 }
 
 .Landing {
-    display: grid;
-    grid: 100vh / 100vw;
-    background-color: var(--color-dark);
+  display: grid;
+  grid: 100vh / 100vw;
+  background-color: var(--color-dark);
 }
 
 .Landing .Landing-focus {
-    place-self: center;
-    text-align: center;
+  place-self: center;
+  text-align: center;
 }
 
 .BasePage {
-    display: grid;
-    grid: "sideNav content" 100vh / 150px calc(100vw - 150px);
+  display: grid;
+  grid: "sideNav content" 100vh / 150px calc(100vw - 150px);
 }
 
 .BasePage .BasePage-sideNav {
-    grid-area: sideNav;
+  grid-area: sideNav;
 }
 
 .BasePage .BasePage-content {
-    grid-area: content;
-    overflow: auto;
+  grid-area: content;
+  overflow: auto;
 }
 
 .testcontent {
-    border: 5px solid var(--color-dark);
-    height: 1000px;
+  border: 5px solid var(--color-dark);
+  height: 1000px;
 }
 
 .CatImage {
-    max-width: 400px;
+  max-width: 400px;
 }
 
 .Headline {
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: normal;
-    margin: 0;
-    color: var(--color-dark);
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: normal;
+  margin: 0;
+  color: var(--color-dark);
 }
 
 .Headline--inverted {
-    color: var(--color-light);
+  color: var(--color-light);
 }
 
 .Headline--1 {
-    font-size: 64px;
+  font-size: 64px;
 }
 
 .Headline--2 {
-    font-size: 48px;
+  font-size: 48px;
 }
 
 .Button {
-    background-color: var(--color-transparent);
-    color: var(--color-dark);
-    border: 1px solid var(--color-dark);
-    border-radius: 4px;
-    padding: 8px 12px;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 24px;
-    cursor:pointer;
+  background-color: var(--color-transparent);
+  color: var(--color-dark);
+  border: 1px solid var(--color-dark);
+  border-radius: 4px;
+  padding: 8px 12px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 24px;
+  cursor:pointer;
 }
 
 .Button:hover {
-    background-color: var(--color-dark-tinted);
+  background-color: var(--color-dark-tinted);
 }
 
 .Button:active {
-    background-color: var(--color-dark-translucent);
+  background-color: var(--color-dark-translucent);
 }
 
 .Button--inverted {
-    color: var(--color-light);
-    border: 1px solid var(--color-light);
+  color: var(--color-light);
+  border: 1px solid var(--color-light);
 }
 
 .Button--inverted:hover {
-    background-color: var(--color-light-tinted);
+  background-color: var(--color-light-tinted);
 }
 
 .Button--inverted:active {
-    background-color: var(--color-light-translucent);
+  background-color: var(--color-light-translucent);
 }
 
 .u-marginBot-small {
-    margin-bottom: 15px;
+  margin-bottom: 15px;
 }
 
 .u-marginBot-medium {
-    margin-bottom: 25px;
+  margin-bottom: 25px;
 }
 
 .u-marginBot-large {
-    margin-bottom: 40px;
+  margin-bottom: 40px;
 }
