@@ -4,7 +4,7 @@
   "description": "Just another personal webpage",
   "private": true,
   "scripts": {
-    "build-dev": "webpack --mode development",
+    "build": "webpack --mode development",
     "build-prod": "webpack --mode production",
     "test": "jest"
   },
