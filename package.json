@@ -4,7 +4,9 @@
   "description": "Just another personal webpage",
   "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build-dev": "webpack --mode development",
+    "build-prod": "webpack --mode production",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -24,7 +26,10 @@
     "@babel/preset-react": "^7.0.0",
     "babel-loader": "^8.0.2",
     "css-loader": "^1.0.0",
+    "enzyme": "^3.9.0",
+    "enzyme-adapter-react-16": "^1.11.2",
     "html-webpack-plugin": "^3.2.0",
+    "jest": "^24.5.0",
     "prop-types": "^15.7.2",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
