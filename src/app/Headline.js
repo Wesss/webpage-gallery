@@ -12,7 +12,7 @@ class Headline extends Component {
             className += " Headline--inverted";
         }
         return(
-            <Tag class={className}>
+            <Tag className={className}>
                 {this.props.headline}
             </Tag>
         );
