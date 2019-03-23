@@ -36,23 +36,26 @@ class App extends Component {
                 return(
                     <div class="BasePage">
                         <div class="BasePage-sideNav">
+                            <Clock/>
+                            <br/>
+                            <br/>
                             side nav
                         </div>
                         <div class="BasePage-content">
-                            content
+                            <div class="testcontent">
+                                <br/>
+                                <br/>
+                                <div>Project is currently under catstruction~</div>
+                                <br/>
+                                <img class="CatImage" src="https://i.imgur.com/SisWrr0.jpg"/>
+                            </div>
                         </div>
                     </div>
                 );
                 break;
         }
-
         /*
-        <Clock/>
-        <br/>
-        <br/>
-        <div>Project is currently under catstruction~</div>
-        <br/>
-        <img src="https://i.imgur.com/SisWrr0.jpg" style="max-width: 400px;"/>
+
         */
     }
 }

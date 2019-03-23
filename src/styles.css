@@ -44,6 +44,16 @@
 
 .BasePage .BasePage-content {
     grid-area: content;
+    overflow: auto;
+}
+
+.testcontent {
+    border: 5px solid var(--color-dark);
+    height: 1000px;
+}
+
+.CatImage {
+    max-width: 400px;
 }
 
 .Headline {
