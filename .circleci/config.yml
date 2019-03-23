@@ -21,11 +21,22 @@ _conditions:
                 only: master
 
 _steps:
+    # common setup
     make_dirs: &make_dirs
         run:
             name: Make Directories
-            command: |
-                mkdir $WORKSPACE_PATH
+            command: mkdir $WORKSPACE_PATH
+    # npm
+    update_npm: &update_npm
+        run:
+            name: Update npm
+            command: npm install npm@6.9.0 -g
+    install_npm_packages: &install_npm_packages
+        run:
+            name: Install npm packages
+            command: npm ci
+
+    # workspace
     copy_dist_to_workspace: &copy_dist_to_workspace
         run:
             name: Copy Dist into Workspace
@@ -55,17 +66,25 @@ jobs:
         steps:
             - checkout
             - *make_dirs
-            - run:
-                name: Install Packages
-                command: |
-                    npm install npm@6.9.0 -g
-                    npm ci
+            - *update_npm
+            - *install_npm_packages
             - run:
                 name: Build Application
-                command: |
-                    npx webpack --mode production
+                command: npm run build-prod
             - *copy_dist_to_workspace
             - *persist_workspace
+    test:
+        docker:
+            - image: node:8.11.4
+        environment:
+            <<: *environment_default
+        steps:
+            - checkout
+            - *update_npm
+            - *install_npm_packages
+            - run:
+                name: Unit Tests
+                command: npm run test
     upload:
         docker:
             - image: circleci/python:3.7.2
@@ -77,12 +96,10 @@ jobs:
             - *extract_dist_from_workspace
             - run:
                 name: Install aws cli
-                command: |
-                    pip3 install awscli==1.16.127 --user
+                command: pip3 install awscli==1.16.127 --user
             - run:
                 name: Sync Webserver
-                command: |
-                    ~/.local/bin/aws s3 sync dist/ s3://wes-develop.com/ --delete
+                command: ~/.local/bin/aws s3 sync dist/ s3://wes-develop.com/ --delete
 
 workflows:
     version: 2
@@ -90,7 +107,10 @@ workflows:
         jobs:
             - build:
                 <<: *cond_on_branch
+            - test:
+                <<: *cond_on_branch
             - upload:
                 <<: *cond_master
                 requires:
                     - build
+                    - test
