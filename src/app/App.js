@@ -13,9 +13,17 @@ class App extends Component {
                         <button class="Button Button--inverted">View Gallery</button>
                     </div>
                 </div>
-                <Clock/>
             </div>
         );
+
+        /*
+        <Clock/>
+        <br/>
+        <br/>
+        <div>Project is currently under catstruction~</div>
+        <br/>
+        <img src="https://i.imgur.com/SisWrr0.jpg" style="max-width: 400px;"/>
+        */
     }
 }
 
