@@ -35,13 +35,11 @@ _steps:
     run:
       name: Install npm packages
       command: npm ci
-
   # workspace
   copy_dist_to_workspace: &copy_dist_to_workspace
     run:
       name: Copy Dist into Workspace
-      command: |
-        cp -r $PROJECT_PATH/dist/ $WORKSPACE_PATH/dist/
+      command: cp -r $PROJECT_PATH/dist/ $WORKSPACE_PATH/dist/
   persist_workspace: &persist_workspace
     persist_to_workspace:
       root: *WORKSPACE_PATH
@@ -53,8 +51,7 @@ _steps:
   extract_dist_from_workspace: &extract_dist_from_workspace
     run:
       name: Extract Dist from Workspace
-      command: |
-        cp -r $WORKSPACE_PATH/dist/ $PROJECT_PATH/dist/
+      command: cp -r $WORKSPACE_PATH/dist/ $PROJECT_PATH/dist/
 
 jobs:
   build:
@@ -69,8 +66,8 @@ jobs:
       - *update_npm
       - *install_npm_packages
       - run:
-        name: Build Application
-        command: npm run build-prod
+          name: Build Application
+          command: npm run build-prod
       - *copy_dist_to_workspace
       - *persist_workspace
   test:
@@ -83,8 +80,8 @@ jobs:
       - *update_npm
       - *install_npm_packages
       - run:
-        name: Unit Tests
-        command: npm run test
+          name: Unit Tests
+          command: npm run test
   upload:
     docker:
       - image: circleci/python:3.7.2
@@ -95,22 +92,22 @@ jobs:
       - *attach_workspace
       - *extract_dist_from_workspace
       - run:
-        name: Install aws cli
-        command: pip3 install awscli==1.16.127 --user
+          name: Install aws cli
+          command: pip3 install awscli==1.16.127 --user
       - run:
-        name: Sync Webserver
-        command: ~/.local/bin/aws s3 sync dist/ s3://wes-develop.com/ --delete
+          name: Sync Webserver
+          command: ~/.local/bin/aws s3 sync dist/ s3://wes-develop.com/ --delete
 
 workflows:
   version: 2
   on_push:
     jobs:
       - build:
-        <<: *cond_on_branch
+          <<: *cond_on_branch
       - test:
-        <<: *cond_on_branch
+          <<: *cond_on_branch
       - upload:
-        <<: *cond_master
-        requires:
-          - build
-          - test
+          <<: *cond_master
+          requires:
+            - build
+            - test
