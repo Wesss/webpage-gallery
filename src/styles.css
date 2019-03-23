@@ -24,15 +24,26 @@
 
 .Landing {
     display: grid;
-    grid-template-columns: 100vw;
-    grid-template-rows: 100vh;
-
+    grid: 100vh / 100vw;
     background-color: var(--color-dark);
 }
 
 .Landing .Landing-focus {
     place-self: center;
     text-align: center;
+}
+
+.BasePage {
+    display: grid;
+    grid: "sideNav content" 100vh / 150px calc(100vw - 150px);
+}
+
+.BasePage .BasePage-sideNav {
+    grid-area: sideNav;
+}
+
+.BasePage .BasePage-content {
+    grid-area: content;
 }
 
 .Headline {

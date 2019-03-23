@@ -4,7 +4,7 @@ import Clock from "./Clock.js";
 
 const NAV_STATE = {
     LANDING: "landing",
-    BAR: "bar"
+    GALLERY: "gallery"
 };
 
 class App extends Component {
@@ -14,7 +14,7 @@ class App extends Component {
     }
 
     clickViewGallery = () => {
-        this.setState({navState: NAV_STATE.BAR});
+        this.setState({navState: NAV_STATE.GALLERY});
     }
 
     render() {
@@ -32,10 +32,15 @@ class App extends Component {
                     </div>
                 );
                 break;
-            case NAV_STATE.BAR:
+            case NAV_STATE.GALLERY:
                 return(
-                    <div class="Landing">
-                        Bar State
+                    <div class="BasePage">
+                        <div class="BasePage-sideNav">
+                            side nav
+                        </div>
+                        <div class="BasePage-content">
+                            content
+                        </div>
                     </div>
                 );
                 break;
