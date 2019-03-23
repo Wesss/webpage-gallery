@@ -19,7 +19,7 @@ class Clock extends Component {
     }
     render() {
         return (
-            <div style="border: 1px solid">
+            <div>
                 {this.state.date.toLocaleTimeString()}
             </div>
         );
