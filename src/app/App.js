@@ -44,7 +44,6 @@ class App extends Component {
                         <div class="BasePage-content">
                             <div class="testcontent">
                                 <br/>
-                                <br/>
                                 <div>Project is currently under catstruction~</div>
                                 <br/>
                                 <img class="CatImage" src="https://i.imgur.com/SisWrr0.jpg"/>
