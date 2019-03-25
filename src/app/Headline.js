@@ -19,7 +19,7 @@ class Headline extends Component {
 
 Headline.propTypes = {
   children: PropTypes.string.isRequired,
-  level: PropTypes.oneOf([1, 2, 3, 4, 5, 6]),
+  level: PropTypes.oneOf([1, 2, 3, 4, 5, 6]).isRequired,
   inverted: PropTypes.bool,
 };
 

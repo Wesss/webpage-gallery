@@ -6,5 +6,5 @@ import { shallow, render } from 'enzyme';
 import Headline from '../../src/app/Headline.js';
 
 test("renders", () => {
-  var component = render(<Headline headline="Testing"/>);
+  var component = render(<Headline level={1}>Test</Headline>);
 });
