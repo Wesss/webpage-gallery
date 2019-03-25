@@ -21,6 +21,7 @@ module.exports = {
       }
     ]
   },
+  devtool: 'inline-source-map',
   plugins: [
     new HtmlWebpackPlugin({
       hash: true,
@@ -28,5 +29,5 @@ module.exports = {
       template: './src/index.html',
       filename: 'index.html'
     })
-   ]
+  ]
 };

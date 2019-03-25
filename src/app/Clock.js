@@ -6,6 +6,7 @@ class Clock extends Component {
     this.state = {date: new Date()};
   }
   componentDidMount() {
+    console.log('Hello Source Maps');
     this.timerID = setInterval(
       () => this.tick(),
       1000
