@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import "./Clock.css"
 
 class Clock extends Component {
   constructor(props) {
@@ -6,7 +7,6 @@ class Clock extends Component {
     this.state = {date: new Date()};
   }
   componentDidMount() {
-    console.log('Hello Source Maps');
     this.timerID = setInterval(
       () => this.tick(),
       1000

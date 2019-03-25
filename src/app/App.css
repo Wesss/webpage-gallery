@@ -1,0 +1,34 @@
+
+.Landing {
+  display: grid;
+  grid: 100vh / 100vw;
+  background-color: var(--color-dark);
+}
+
+.Landing .Landing-focus {
+  place-self: center;
+  text-align: center;
+}
+
+.BasePage {
+  display: grid;
+  grid: "sideNav content" 100vh / 150px calc(100vw - 150px);
+}
+
+.BasePage .BasePage-sideNav {
+  grid-area: sideNav;
+}
+
+.BasePage .BasePage-content {
+  grid-area: content;
+  overflow: auto;
+}
+
+.testcontent {
+  border: 5px solid var(--color-dark);
+  height: 1000px;
+}
+
+.CatImage {
+  max-width: 400px;
+}

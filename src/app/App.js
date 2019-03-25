@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import Headline from "./Headline.js";
+import Button from "./Button.js";
 import Clock from "./Clock.js";
+import "./App.css"
 
 const NAV_STATE = {
   LANDING: "landing",
@@ -23,11 +25,15 @@ class App extends Component {
         return(
           <div className="Landing">
             <div className="Landing-focus">
-              <Headline headline="Wesley Cox" level={2} inverted={true}/>
-              <Headline headline="Software Developer" level={1} inverted={true}/>
-              <button className="Button Button--inverted" onClick={this.clickViewGallery}>
+              <Headline level={2} inverted={true}>
+                Wesley Cox
+              </Headline>
+              <Headline level={1} inverted={true}>
+                Software Developer
+              </Headline>
+              <Button inverted={true} onClick={this.clickViewGallery}>
                 View Gallery
-              </button>
+              </Button>
             </div>
           </div>
         );

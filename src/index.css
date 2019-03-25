@@ -1,0 +1,35 @@
+:root {
+  --rgb-light: 255, 255, 255;
+  --rgb-dark: 48, 53, 64;
+
+  --alpha-transparent: 0.0;
+  --alpha-tinted: 0.1;
+  --alpha-translucent: 0.2;
+  --alpha-opaque: 1.0;
+
+  --color-dark: rgba(var(--rgb-dark));
+  --color-dark-translucent: rgba(var(--rgb-dark), var(--alpha-translucent));
+  --color-dark-tinted: rgba(var(--rgb-dark), var(--alpha-tinted));
+
+  --color-light: rgba(var(--rgb-light));
+  --color-light-translucent: rgba(var(--rgb-light), var(--alpha-translucent));
+  --color-light-tinted: rgba(var(--rgb-light), var(--alpha-tinted));
+
+  --color-transparent: rgba(0, 0, 0, var(--alpha-transparent));
+}
+
+.Body {
+  margin: 0;
+}
+
+.u-marginBot-small {
+  margin-bottom: 15px;
+}
+
+.u-marginBot-medium {
+  margin-bottom: 25px;
+}
+
+.u-marginBot-large {
+  margin-bottom: 40px;
+}
