@@ -1,10 +1,10 @@
 import React from 'react';
 import Enzyme from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-Enzyme.configure({ adapter: new Adapter() });
-import { shallow, render } from 'enzyme';
 import Headline from '../../src/app/Headline.js';
 
+Enzyme.configure({ adapter: new Adapter() });
+
 test("renders", () => {
-  var component = render(<Headline level={1}>Test</Headline>);
+  var component = Enzyme.render(<Headline level={1}>Test</Headline>);
 });

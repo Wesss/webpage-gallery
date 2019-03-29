@@ -59,9 +59,6 @@ class App extends Component {
         );
         break;
     }
-    /*
-
-    */
   }
 }
 
