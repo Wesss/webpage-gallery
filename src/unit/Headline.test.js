@@ -1,7 +1,7 @@
 import React from 'react';
 import Enzyme from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import Headline from '../../src/app/Headline.js';
+import Headline from './Headline.js';
 
 Enzyme.configure({ adapter: new Adapter() });
 

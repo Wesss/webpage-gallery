@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import Headline from "./Headline.js";
-import Button from "./Button.js";
-import Clock from "./Clock.js";
+import Headline from "unit/Headline.js";
+import Button from "unit/Button.js";
+import Clock from "unit/Clock.js";
 import "./App.css"
 
 const NAV_STATE = {
