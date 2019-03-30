@@ -2,6 +2,7 @@ const path = require('path');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
+  // compilation
   entry: './src/index.js',
   output: {
     filename: 'index.js',
@@ -21,10 +22,6 @@ module.exports = {
       }
     ]
   },
-  devtool: 'inline-source-map',
-  devServer: {
-    contentBase: './dist'
-  },
   plugins: [
     new HtmlWebpackPlugin({
       hash: true,
@@ -32,5 +29,13 @@ module.exports = {
       template: './src/index.html',
       filename: 'index.html'
     })
-  ]
+  ],
+  // local dev
+  devtool: 'inline-source-map',
+  devServer: {
+    contentBase: './dist',
+    historyApiFallback: {
+      index: '/index.html'
+    }
+  }
 };
