@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Gallery from "./Gallery.js";
 import Landing from "./Landing.js";
-import "./App.css"
 
 class App extends Component {
   render() {

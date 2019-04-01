@@ -1,0 +1,11 @@
+
+.Landing {
+  display: grid;
+  grid: 100vh / 100vw;
+  background-color: var(--color-dark);
+}
+
+.Landing .Landing-focus {
+  place-self: center;
+  text-align: center;
+}

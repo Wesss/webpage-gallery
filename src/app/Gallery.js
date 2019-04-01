@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Clock from "unit/Clock.js";
+import './Gallery.css';
 
 class Gallery extends Component {
   render() {

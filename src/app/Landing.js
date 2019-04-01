@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Headline from "unit/Headline.js";
 import Button from "unit/Button.js";
+import "./Landing.css"
 
 class Landing extends Component {
   render() {
