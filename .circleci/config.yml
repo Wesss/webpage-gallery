@@ -24,7 +24,7 @@ _steps:
   # common setup
   make_dirs: &make_dirs
     run:
-      name: Make Directories
+      name: Make directories
       command: mkdir $WORKSPACE_PATH
   # npm
   update_npm: &update_npm
@@ -38,7 +38,7 @@ _steps:
   # workspace
   copy_dist_to_workspace: &copy_dist_to_workspace
     run:
-      name: Copy Dist into Workspace
+      name: Copy dist into workspace
       command: cp -r $PROJECT_PATH/dist/ $WORKSPACE_PATH/dist/
   persist_workspace: &persist_workspace
     persist_to_workspace:
@@ -50,7 +50,7 @@ _steps:
       at: *WORKSPACE_PATH
   extract_dist_from_workspace: &extract_dist_from_workspace
     run:
-      name: Extract Dist from Workspace
+      name: Extract dist from workspace
       command: cp -r $WORKSPACE_PATH/dist/ $PROJECT_PATH/dist/
 
 jobs:
@@ -66,7 +66,7 @@ jobs:
       - *update_npm
       - *install_npm_packages
       - run:
-          name: Build Application
+          name: Build application
           command: npm run build
       - *copy_dist_to_workspace
       - *persist_workspace
@@ -80,7 +80,7 @@ jobs:
       - *update_npm
       - *install_npm_packages
       - run:
-          name: Unit Tests
+          name: Unit tests
           command: npm run test
   upload:
     docker:
@@ -93,10 +93,18 @@ jobs:
       - *extract_dist_from_workspace
       - run:
           name: Install aws cli
-          command: pip3 install awscli==1.16.127 --user
+          command: |
+            pip3 install awscli==1.16.127 --user
       - run:
-          name: Sync Webserver
+          name: Sync webserver
           command: ~/.local/bin/aws s3 sync dist/ s3://wes-develop.com/ --delete
+      - run:
+          name: Invalidate CDN cahced entrypoints
+          command: |
+            ~/.local/bin/aws cloudfront create-invalidation \
+              --distribution-id E1N4FFELPXS3GO \
+              --paths /index.html
+
 
 workflows:
   version: 2
