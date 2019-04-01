@@ -5,7 +5,7 @@ module.exports = {
   // compilation
   entry: './src/index.js',
   output: {
-    filename: 'index.js',
+    filename: 'index.[hash].js',
     path: path.resolve(__dirname, 'dist')
   },
   module: {
@@ -24,7 +24,6 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      hash: true,
       inject: 'body',
       template: './src/index.html',
       filename: 'index.html'
