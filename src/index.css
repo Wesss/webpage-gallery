@@ -3,17 +3,23 @@
   --rgb-dark: 48, 53, 64;
 
   --alpha-transparent: 0.0;
-  --alpha-tinted: 0.1;
-  --alpha-translucent: 0.2;
+  --alpha-tinted-1: 0.1;
+  --alpha-tinted-2: 0.2;
+  --alpha-translucent-2: 0.6;
+  --alpha-translucent-1: 0.8;
   --alpha-opaque: 1.0;
 
   --color-dark: rgba(var(--rgb-dark));
-  --color-dark-translucent: rgba(var(--rgb-dark), var(--alpha-translucent));
-  --color-dark-tinted: rgba(var(--rgb-dark), var(--alpha-tinted));
+  --color-dark-translucent-1: rgba(var(--rgb-dark), var(--alpha-translucent-1));
+  --color-dark-translucent-2: rgba(var(--rgb-dark), var(--alpha-translucent-2));
+  --color-dark-tinted-2: rgba(var(--rgb-dark), var(--alpha-tinted-2));
+  --color-dark-tinted-1: rgba(var(--rgb-dark), var(--alpha-tinted-1));
 
   --color-light: rgba(var(--rgb-light));
-  --color-light-translucent: rgba(var(--rgb-light), var(--alpha-translucent));
-  --color-light-tinted: rgba(var(--rgb-light), var(--alpha-tinted));
+  --color-light-translucent-1: rgba(var(--rgb-light), var(--alpha-translucent-1));
+  --color-light-translucent-2: rgba(var(--rgb-light), var(--alpha-translucent-2));
+  --color-light-tinted-2: rgba(var(--rgb-light), var(--alpha-tinted-2));
+  --color-light-tinted-1: rgba(var(--rgb-light), var(--alpha-tinted-1));
 
   --color-transparent: rgba(0, 0, 0, var(--alpha-transparent));
 }

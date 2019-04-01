@@ -1,0 +1,18 @@
+.NavBar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--color-dark);
+  height: 50px;
+}
+
+.NavBar-link {
+  color: var(--color-light);
+  padding: 0 15px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.NavBar-link:hover {
+  color: var(--color-light-translucent-2);
+}

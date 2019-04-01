@@ -7,15 +7,15 @@
   font: inherit;
   font-size: 24px;
   cursor: pointer;
-  text-decoration: inherit;
+  text-decoration: none;
 }
 
 .Button:hover {
-  background-color: var(--color-dark-tinted);
+  background-color: var(--color-dark-tinted-1);
 }
 
 .Button:active {
-  background-color: var(--color-dark-translucent);
+  background-color: var(--color-dark-tinted-2);
 }
 
 .Button--inverted {
@@ -24,9 +24,9 @@
 }
 
 .Button--inverted:hover {
-  background-color: var(--color-light-tinted);
+  background-color: var(--color-light-tinted-1);
 }
 
 .Button--inverted:active {
-  background-color: var(--color-light-translucent);
+  background-color: var(--color-light-tinted-2);
 }
