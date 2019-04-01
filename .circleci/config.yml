@@ -98,12 +98,12 @@ jobs:
       - run:
           name: Sync webserver
           command: ~/.local/bin/aws s3 sync dist/ s3://wes-develop.com/ --delete
-      # - run:
-      #     name: Invalidate CDN cahced entrypoints
-      #     command: |
-      #       ~/.local/bin/aws cloudfront create-invalidation \
-      #         --distribution-id E1N4FFELPXS3GO \
-      #         --paths /index.html
+      - run:
+          name: Invalidate CDN cahced entrypoints
+          command: |
+            ~/.local/bin/aws cloudfront create-invalidation \
+              --distribution-id E1N4FFELPXS3GO \
+              --paths /index.html
 
 
 workflows:
