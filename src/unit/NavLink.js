@@ -15,7 +15,7 @@ class NavLink extends Component {
         children={({ match }) => {
           if (match) {
             // TODO fix 'to' prop missing warning
-            return <Link className={"NavLink " + activeClassName} {...rest}/>;
+            return <span className={"NavLink " + activeClassName} {...rest}/>;
           } else {
             return <Link className={"NavLink " + className} to={to} {...rest}/>
           }

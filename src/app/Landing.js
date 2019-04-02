@@ -8,12 +8,14 @@ class Landing extends Component {
     return(
       <div className="Landing">
         <div className="Landing-focus">
-          <Headline level={2} inverted={true}>
-            Wesley Cox
-          </Headline>
-          <Headline level={1} inverted={true}>
-            Software Developer
-          </Headline>
+          <div className="u-marginsmall">
+            <Headline level={2} inverted={true}>
+              Wesley Cox
+            </Headline>
+            <Headline level={1} inverted={true}>
+              Software Developer
+            </Headline>
+          </div>
           <Button linkTo={"/gallery"} inverted={true}>
             View Gallery
           </Button>
