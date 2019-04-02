@@ -13,6 +13,13 @@
   text-decoration: none;
 }
 
+.NavBar-link-active {
+  color: var(--color-light-translucent-2);
+  padding: 0 15px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
 .NavBar-link:hover {
   color: var(--color-light-translucent-2);
 }

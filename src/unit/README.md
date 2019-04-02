@@ -1,1 +1,2 @@
-This is a namespace for components that either don't use any other components or are more specific instances of other base components
+This is a namespace for components that represent what appear to be singular elements
+in terms of UX.
