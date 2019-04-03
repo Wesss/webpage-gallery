@@ -40,5 +40,5 @@ test("renders a span if given a realtive url to the currently active route", () 
   var noMatchJSX = component.find(Route).props().children({match: false});
   var noMatchComponent = Enzyme.shallow(<div>{noMatchJSX}</div>);
   expect(noMatchComponent.find(RouteLink).length).toBe(1);
-  expect(noMatchComponent.find(RouteLink).props().href).toBe("/dashboard");
+  expect(noMatchComponent.find(RouteLink).props().to).toBe("/dashboard");
 });
