@@ -6,17 +6,15 @@
 
 .Gallery {
   display: grid;
-  grid: auto-flow dense 200px / 50% 50%;
+  grid: auto-flow dense 150px / 50% 50%;
 }
 
 .Gallery .Gallery-exhibit {
-  /* place-self: center;
-  text-align: center; */
   border: 10px solid var(--color-dark-tinted-1);
 }
 
 .Gallery .Gallery-exhibit-expanded {
-  grid-area: span 3 / span 2;
+  grid-area: span 4 / span 2;
   border: 10px solid var(--color-dark-translucent-1);
 }
 
