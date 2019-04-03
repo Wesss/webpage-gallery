@@ -7,7 +7,7 @@ import Button from './Button.js';
 Enzyme.configure({ adapter: new Adapter() });
 
 test("renders", () => {
-  var component = Enzyme.render(<Button>Test</Button>);
+  Enzyme.render(<Button>Test</Button>);
 });
 
 test("triggers onClick when clicked", () => {

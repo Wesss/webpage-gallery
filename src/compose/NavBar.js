@@ -1,22 +1,21 @@
 import React, { Component } from "react";
 import Button from "unit/Button";
-import NavLink from "unit/NavLink";
+import Link from "unit/Link";
 import './NavBar.css';
 
 class NavBar extends Component {
   render() {
     return(
       <div className="NavBar">
-        <NavLink className="NavBar-link" exact activeClassName="NavBar-link-active" to={"/"}>
+        <Link className="NavBar-link" exact activeClassName="NavBar-link-active" href={"/"}>
           Home
-        </NavLink>
-        <NavLink className="NavBar-link" activeClassName="NavBar-link-active" to={"/gallery"}>
+        </Link>
+        <Link className="NavBar-link" activeClassName="NavBar-link-active" href={"/gallery"}>
           Gallery
-        </NavLink>
+        </Link>
       </div>
     );
   }
 }
 
-//
 export default NavBar;

@@ -6,5 +6,5 @@ import Headline from './Headline.js';
 Enzyme.configure({ adapter: new Adapter() });
 
 test("renders", () => {
-  var component = Enzyme.render(<Headline level={1}>Test</Headline>);
+  Enzyme.render(<Headline level={1}>Test</Headline>);
 });

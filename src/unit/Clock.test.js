@@ -6,5 +6,5 @@ import Clock from './Clock.js';
 Enzyme.configure({ adapter: new Adapter() });
 
 test("renders", () => {
-  var component = Enzyme.render(<Clock />);
+  Enzyme.render(<Clock />);
 });
