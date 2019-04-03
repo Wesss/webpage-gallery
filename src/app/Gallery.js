@@ -8,17 +8,40 @@ class Gallery extends Component {
     return(
       <div>
         <NavBar/>
-        <div>
-          <div className="testcontent">
-            <br/>
-            <div>Project is currently under catstruction~</div>
-            <br/>
-            <img className="CatImage" src="https://i.imgur.com/SisWrr0.jpg"/>
+        <div className="Gallery-body">
+          <div className="Gallery">
+            <div className="Gallery-exhibit">
+              1
+            </div>
+            <div className="Gallery-exhibit">
+              2
+            </div>
+            <div className="Gallery-exhibit">
+              3
+            </div>
+            <div className="Gallery-exhibit-expanded">
+              3 expanded
+              <br/>
+              <br/>
+              <div>Project is currently under catstruction~</div>
+              <br/>
+              <img className="CatImage" src="https://i.imgur.com/SisWrr0.jpg"/>
+            </div>
+            <div className="Gallery-exhibit">
+              4
+            </div>
+            <div className="Gallery-exhibit">
+              5
+            </div>
+            <div className="Gallery-exhibit">
+              6
+            </div>
           </div>
         </div>
       </div>
     );
   }
+
 }
 
 export default Gallery;

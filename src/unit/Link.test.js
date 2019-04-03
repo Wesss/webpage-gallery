@@ -29,7 +29,7 @@ test("renders a Router Link if given a relative url to a different route", () =>
     <Link href="/dashboard">Test</Link>
   );
   var matchJSX = component.find(Route).props().children({match: true});
-  var matchComponent = Enzyme.shallow(matchJSX);
+  var matchComponent = Enzyme.shallow(<div>{matchJSX}</div>);
   expect(matchComponent.find("span").length).toBe(1);
 });
 
