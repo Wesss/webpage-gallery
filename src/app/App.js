@@ -10,9 +10,6 @@ class App extends Component {
       <BrowserRouter>
         <Route exact path="/" component={Landing}/>
         <Route path="/gallery" component={Gallery}/>
-        <Link href="http://www.google.com">Test</Link>
-        <Link href="/gallery">Test</Link>
-        <Link href="/">Test</Link>
       </BrowserRouter>
     );
   }
