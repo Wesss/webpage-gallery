@@ -1,12 +1,13 @@
 
 .Gallery-body {
   width: 700px;
-  margin: auto;
+  margin: 20px auto;
 }
 
 .Gallery {
   display: grid;
-  grid: auto-flow dense 150px / 50% 50%;
+  grid: auto-flow dense 150px / calc(50% - 10px) calc(50% - 10px);
+  grid-gap: 20px;
 }
 
 .Gallery .Gallery-exhibit {
