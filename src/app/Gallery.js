@@ -21,8 +21,8 @@ class Gallery extends Component {
   renderExhibitTiles = (index) => {
     var render = [
       <div
-        key={"exhibit-preview-" + index}
-        className="Gallery-exhibit"
+        key={"exhibit-card-" + index}
+        className="Gallery-exhibit-card"
         onClick={this.clickExhibitPreview(index)}>
         {index} click me
       </div>
@@ -30,7 +30,7 @@ class Gallery extends Component {
 
     if (this.state.openExhibit == index) {
       render.push(
-        <div key={"exhibit-" + index} className="Gallery-exhibit-expanded">
+        <div key={"exhibit-expanded-" + index} className="Gallery-exhibit-expanded">
           {index} expanded
           <br/>
           <br/>

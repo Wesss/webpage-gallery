@@ -10,8 +10,9 @@
   grid-gap: 20px;
 }
 
-.Gallery .Gallery-exhibit {
+.Gallery .Gallery-exhibit-card {
   border: 10px solid var(--color-dark-tinted-1);
+  cursor: pointer;
 }
 
 .Gallery .Gallery-exhibit-expanded {
