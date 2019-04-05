@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import NavBar from "compose/NavBar.js";
+import ExhibitCard from "compose/ExhibitCard.js";
 import Clock from "unit/Clock.js";
 import './Gallery.css';
 
@@ -19,18 +20,24 @@ class Gallery extends Component {
   }
 
   renderExhibitTiles = (index) => {
+    var style = {
+      backgroundImage: 'url(https://i.imgur.com/SisWrr0.jpg)',
+    };
+
+    // <img className="CatImage" src="https://i.imgur.com/SisWrr0.jpg"/>
     var render = [
-      <div
-        key={"exhibit-card-" + index}
-        className="Gallery-exhibit-card"
+      <div key={"exhibit-card-" + index}
+        className="Gallery-item"
         onClick={this.clickExhibitPreview(index)}>
-        {index} click me
+        <ExhibitCard>
+          {index} click me
+        </ExhibitCard>
       </div>
     ];
 
     if (this.state.openExhibit == index) {
       render.push(
-        <div key={"exhibit-expanded-" + index} className="Gallery-exhibit-expanded">
+        <div key={"exhibit-expanded-" + index} className="Gallery-item Gallery-exhibit-expanded">
           {index} expanded
           <br/>
           <br/>

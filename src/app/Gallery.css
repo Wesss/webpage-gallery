@@ -1,18 +1,18 @@
 
 .Gallery-body {
+  /* TODO refactor into reusable page body */
   width: 700px;
   margin: 20px auto;
 }
 
 .Gallery {
   display: grid;
-  grid: auto-flow dense 150px / calc(50% - 10px) calc(50% - 10px);
+  grid: auto-flow dense 100px / calc(50% - 10px) calc(50% - 10px);
   grid-gap: 20px;
 }
 
-.Gallery .Gallery-exhibit-card {
-  border: 10px solid var(--color-dark-tinted-1);
-  cursor: pointer;
+.Gallery .Gallery-item {
+  overflow: hidden;
 }
 
 .Gallery .Gallery-exhibit-expanded {
