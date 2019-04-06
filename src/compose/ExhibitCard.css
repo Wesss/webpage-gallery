@@ -1,16 +1,15 @@
 .ExhibitCard {
   display: grid;
   font-size: 24px;
-  border: 1px solid var(--color-dark);
-  height: calc(100% - 2px);
-  background-image: linear-gradient(var(--color-transparent), var(--color-dark-tinted-1));
+  height: 100%;
+  background-image: linear-gradient(var(--color-dark-tinted-1), var(--color-dark-tinted-2));
   cursor: pointer;
 }
 
-.ExhibitCard .ExhibitCard-title {
-  place-self: center;
+.ExhibitCard:hover {
+  filter: opacity(80%);
 }
 
-.Landing .Landing-focus {
-  text-align: center;
+.ExhibitCard-title {
+  place-self: center;
 }
