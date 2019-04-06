@@ -9,7 +9,8 @@
           "src": "./src",
           "app": "./src/app",
           "compose": "./src/compose",
-          "unit": "./src/unit"
+          "unit": "./src/unit",
+          "icon": "./src/icon"
         }
       }
     ]

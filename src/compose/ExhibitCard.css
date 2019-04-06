@@ -7,7 +7,7 @@
 }
 
 .ExhibitCard:hover {
-  /* filter: opacity(80%); */
+  filter: opacity(80%);
 }
 
 .ExhibitCard-title {
