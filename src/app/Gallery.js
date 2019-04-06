@@ -24,7 +24,6 @@ class Gallery extends Component {
       backgroundImage: 'url(https://i.imgur.com/SisWrr0.jpg)',
     };
 
-    // <img className="CatImage" src="https://i.imgur.com/SisWrr0.jpg"/>
     var render = [
       <div key={"exhibit-card-" + index}
         className="Gallery-item"
@@ -37,7 +36,8 @@ class Gallery extends Component {
 
     if (this.state.openExhibit == index) {
       render.push(
-        <div key={"exhibit-expanded-" + index} className="Gallery-item Gallery-exhibit-expanded">
+        <div key={"exhibit-expanded-" + index}
+          className="Gallery-item Gallery-exhibit-expanded">
           {index} expanded
           <br/>
           <br/>

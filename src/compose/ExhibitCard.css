@@ -1,13 +1,13 @@
 .ExhibitCard {
   display: grid;
   font-size: 24px;
-  height: 100%;
-  background-image: linear-gradient(var(--color-dark-tinted-1), var(--color-dark-tinted-2));
+  height: calc(100% - 2px);
+  /* background-image: linear-gradient(var(--color-dark-tinted-1), var(--color-dark-tinted-2)); */
   cursor: pointer;
 }
 
 .ExhibitCard:hover {
-  filter: opacity(80%);
+  /* filter: opacity(80%); */
 }
 
 .ExhibitCard-title {
