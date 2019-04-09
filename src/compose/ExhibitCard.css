@@ -2,7 +2,6 @@
   display: grid;
   grid: 1fr 2fr 1fr / 1fr;
   font-size: 24px;
-  font-weight: bold;
   height: calc(100% - 2px);
   cursor: pointer;
 }
