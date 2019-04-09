@@ -13,7 +13,7 @@
 
 .Gallery-item {
   overflow: auto;
-  box-shadow: 3px 3px 5px var(--color-dark-tinted-2), 0px 0px 3px var(--color-dark-tinted-1);
+  box-shadow: 3px 3px 5px var(--color-dark-tinted-2), -1px -1px 5px var(--color-dark-tinted-1);
 }
 
 .Gallery-exhibit-expanded {

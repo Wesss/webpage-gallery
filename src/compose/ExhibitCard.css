@@ -1,15 +1,22 @@
 .ExhibitCard {
   display: grid;
+  grid: 1fr 2fr 1fr / 1fr;
   font-size: 24px;
+  font-weight: bold;
   height: calc(100% - 2px);
-  /* background-image: linear-gradient(var(--color-dark-tinted-1), var(--color-dark-tinted-2)); */
   cursor: pointer;
 }
 
 .ExhibitCard:hover {
-  filter: opacity(80%);
+  filter: opacity(60%);
 }
 
 .ExhibitCard-title {
+  grid-area: 2 / 1;
+  place-self: center;
+}
+
+.ExhibitCard-icon {
+  grid-area: 3 / 1;
   place-self: center;
 }

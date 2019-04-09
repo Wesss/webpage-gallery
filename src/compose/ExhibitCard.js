@@ -9,7 +9,9 @@ class ExhibitCard extends Component {
       <div className="ExhibitCard">
         <div className="ExhibitCard-title">
           {this.props.children}
-          <ExpandButton width="24px" height="24px" />
+        </div>
+        <div className="ExhibitCard-icon">
+          <ExpandButton width="24px" height="24px"/>
         </div>
       </div>
     );

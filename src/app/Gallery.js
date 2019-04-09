@@ -29,7 +29,7 @@ class Gallery extends Component {
         className="Gallery-item"
         onClick={this.clickExhibitPreview(index)}>
         <ExhibitCard>
-          {index} click me
+          Click Me {index}
         </ExhibitCard>
       </div>
     ];
