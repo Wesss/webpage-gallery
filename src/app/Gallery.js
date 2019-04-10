@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import NavBar from "compose/NavBar.js";
 import ExhibitCard from "compose/ExhibitCard.js";
 import Clock from "unit/Clock.js";
-import MeetTheTeam from "app/exhibit/MeetTheTeam.js";
+import StaticContent from "app/exhibit/StaticContent.js";
 import './Gallery.css';
 
 class Gallery extends Component {
@@ -53,8 +53,8 @@ class Gallery extends Component {
     const galleryConfig = [
       {
         id: 1,
-        title: "Meet the Team",
-        component: <MeetTheTeam/>
+        title: "Static Content",
+        component: <StaticContent/>
       },
       {
         id: 2,

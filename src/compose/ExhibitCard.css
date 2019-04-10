@@ -1,7 +1,6 @@
 .ExhibitCard {
   display: grid;
   grid: 1fr 2fr 1fr / 1fr;
-  font-size: 24px;
   height: calc(100% - 2px);
   cursor: pointer;
 }
@@ -13,7 +12,6 @@
 .ExhibitCard-title {
   grid-area: 2 / 1;
   place-self: center;
-  color: var(--color-dark);
 }
 
 .ExhibitCard-icon {

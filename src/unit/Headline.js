@@ -9,6 +9,9 @@ class Headline extends Component {
     if (this.props.inverted) {
       className += " Headline--inverted";
     }
+    if (this.props.className) {
+      className += " " + this.props.className;
+    }
     return(
       <Tag className={className}>
         {this.props.children}
@@ -20,6 +23,7 @@ class Headline extends Component {
 Headline.propTypes = {
   children: PropTypes.string.isRequired,
   level: PropTypes.oneOf([1, 2, 3, 4, 5, 6]).isRequired,
+  className: PropTypes.string,
   inverted: PropTypes.bool,
 };
 
