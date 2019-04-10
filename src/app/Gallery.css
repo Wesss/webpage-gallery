@@ -18,8 +18,5 @@
 
 .Gallery-exhibit-expanded {
   grid-area: span 5 / span 2;
-}
-
-.CatImage {
-  max-width: 610px;
+  padding: 15px;
 }

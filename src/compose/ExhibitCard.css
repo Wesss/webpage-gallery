@@ -13,6 +13,7 @@
 .ExhibitCard-title {
   grid-area: 2 / 1;
   place-self: center;
+  color: var(--color-dark);
 }
 
 .ExhibitCard-icon {

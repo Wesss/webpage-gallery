@@ -59,7 +59,15 @@ class Gallery extends Component {
       {
         id: 2,
         title: "Stub",
-        component: <Clock/>
+        component:
+          <div>
+            <Clock/>
+            <br/>
+            <br/>
+            <div>Project is currently under catstruction~</div>
+            <br/>
+            <img className="CatImage" style={{maxWidth:"600px"}} src="https://i.imgur.com/SisWrr0.jpg"/>
+          </div>
       },
     ]
 

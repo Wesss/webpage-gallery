@@ -8,7 +8,7 @@ class Landing extends Component {
     return(
       <div className="Landing">
         <div className="Landing-focus">
-          <div className="u-marginsmall">
+          <div className="u-marginSmall">
             <Headline level={2} inverted={true}>
               Wesley Cox
             </Headline>
