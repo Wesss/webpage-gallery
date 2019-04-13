@@ -10,7 +10,7 @@ class Link extends Component {
     return href.charAt(0) == "/";
   }
 
-  getClasses = (className, activeCasedClassName) => {
+  getClasses = (className, activeCasedClassName, inverted) => {
     var classes = "Link";
     if (className) {
       classes += " " + className;
@@ -18,11 +18,14 @@ class Link extends Component {
     if (activeCasedClassName) {
       classes += " " + activeCasedClassName;
     }
+    if (inverted) {
+      classes += " Link--inverted";
+    }
     return classes;
   }
 
   render() {
-    var { className, activeClassName, inactiveClassName, href, children, newTab, title } = this.props;
+    var { className, activeClassName, inactiveClassName, href, children, newTab, title, inverted } = this.props;
     var titleProp = {
       title: title
     };
@@ -34,12 +37,12 @@ class Link extends Component {
         children={({ match }) => {
           if (match) {
             render =
-              <span className={this.getClasses(className, activeClassName)} {...titleProp}>
+              <span className={this.getClasses(className, activeClassName, inverted)} {...titleProp}>
                 {children}
               </span>;
           } else {
             render =
-              <RouteLink className={this.getClasses(className, inactiveClassName)} to={href} {...titleProp}>
+              <RouteLink className={this.getClasses(className, inactiveClassName, inverted)} to={href} {...titleProp}>
                 {children}
               </RouteLink>;
           }
@@ -51,7 +54,7 @@ class Link extends Component {
         targetProp.target = "_blank";
       };
       render =
-        <a className={this.getClasses(className, inactiveClassName)} href={href} {...targetProp} {...titleProp}>
+        <a className={this.getClasses(className, inactiveClassName, inverted)} href={href} {...targetProp} {...titleProp}>
           {children}
         </a>;
     }

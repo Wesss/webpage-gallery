@@ -1,3 +1,7 @@
 .Link {
   cursor: pointer;
 }
+
+.Link--inverted {
+  color: var(--color-white);
+}

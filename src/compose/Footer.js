@@ -9,19 +9,22 @@ class Footer extends Component {
         <span> Icons made by </span>
         <Link href="https://www.flaticon.com/authors/google"
           title="Google"
-          newTab={true}>
+          newTab={true}
+          inverted={true}>
           Google
         </Link>
         <span> from </span>
         <Link href="https://www.flaticon.com/"
           title="Flaticon"
-          newTab={true}>
+          newTab={true}
+          inverted={true}>
           www.flaticon.com
         </Link>
         <span> is licensed by </span>
         <Link href="http://creativecommons.org/licenses/by/3.0/"
           title="Creative Commons BY 3.0"
-          newTab={true}>
+          newTab={true}
+          inverted={true}>
           CC 3.0 BY
         </Link>
       </div>
