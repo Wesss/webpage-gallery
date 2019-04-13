@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import NavBar from "compose/NavBar.js";
+import Footer from "compose/Footer.js";
 import ExhibitCard from "compose/ExhibitCard.js";
 import Clock from "unit/Clock.js";
 import StaticContent from "app/exhibit/StaticContent.js";
@@ -84,6 +85,7 @@ class Gallery extends Component {
             {galleryRender}
           </div>
         </div>
+        <Footer/>
       </div>
     );
   }

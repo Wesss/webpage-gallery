@@ -22,7 +22,10 @@ class Link extends Component {
   }
 
   render() {
-    var { className, activeClassName, inactiveClassName, href, children } = this.props;
+    var { className, activeClassName, inactiveClassName, href, children, newTab, title } = this.props;
+    var titleProp = {
+      title: title
+    };
     var render;
     if (this.isRelativeUrl(href)) {
       render = <Route
@@ -30,18 +33,28 @@ class Link extends Component {
         exact={true}
         children={({ match }) => {
           if (match) {
-            return <span className={this.getClasses(className, activeClassName)}>{children}</span>;
+            render =
+              <span className={this.getClasses(className, activeClassName)} {...titleProp}>
+                {children}
+              </span>;
           } else {
-            return <RouteLink className={this.getClasses(className, inactiveClassName)} to={href}>{children}</RouteLink>
+            render =
+              <RouteLink className={this.getClasses(className, inactiveClassName)} to={href} {...titleProp}>
+                {children}
+              </RouteLink>;
           }
         }}
       />;
     } else {
-      render = <a className={this.getClasses(className, inactiveClassName)} href={href}>{children}</a>;
+      var targetProp = {};
+      if (this.props.newTab) {
+        targetProp.target = "_blank";
+      };
+      render =
+        <a className={this.getClasses(className, inactiveClassName)} href={href} {...targetProp} {...titleProp}>
+          {children}
+        </a>;
     }
-
-
-
 
     return(render);
   }
@@ -53,6 +66,8 @@ Link.propTypes = {
   className: PropTypes.string,
   activeClassName: PropTypes.string,
   inactiveClassName: PropTypes.string,
+  newTab: PropTypes.bool,
+  title: PropTypes.string
 };
 
 export default Link;

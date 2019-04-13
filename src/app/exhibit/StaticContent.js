@@ -7,6 +7,10 @@ class StaticContent extends Component {
   render() {
     return(
       <div>
+        <Paragraph className="u-marginMedium">
+          This is an example of rendering some content in a common webpage format, utilizing
+          standard html/css techniques and image hosting.
+        </Paragraph>
         <Headline level={3}>
           Meet the Team
         </Headline>

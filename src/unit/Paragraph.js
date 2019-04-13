@@ -5,7 +5,7 @@ import "./Paragraph.css"
 class Paragraph extends Component {
   render() {
     return (
-      <p className="Paragraph">
+      <p className={this.props.className ? "Paragraph " + this.props.className : "Paragraph"}>
         {this.props.children}
       </p>
     );
@@ -14,6 +14,7 @@ class Paragraph extends Component {
 
 Paragraph.propTypes = {
   children: PropTypes.any.isRequired,
+  className: PropTypes.string,
 };
 
 export default Paragraph;
