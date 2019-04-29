@@ -36,15 +36,14 @@ class Link extends Component {
         exact={true}
         children={({ match }) => {
           if (match) {
-            render =
-              <span className={this.getClasses(className, activeClassName, inverted)} {...titleProp}>
-                {children}
-              </span>;
+            console.log("Hello!");
+            return <span className={this.getClasses(className, activeClassName, inverted)} {...titleProp}>
+              {children}
+            </span>;
           } else {
-            render =
-              <RouteLink className={this.getClasses(className, inactiveClassName, inverted)} to={href} {...titleProp}>
-                {children}
-              </RouteLink>;
+            return <RouteLink className={this.getClasses(className, inactiveClassName, inverted)} to={href} {...titleProp}>
+              {children}
+            </RouteLink>;
           }
         }}
       />;

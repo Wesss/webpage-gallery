@@ -7,6 +7,8 @@ Just another personal webpage
 
 - On master push, the src files are compiled into a production ready distribution and uploaded to an S3 bucket set up to host a static website at `wes-develop.com`
 
+- To run specific tests, run `npm install jest --global` and then `jest -t 'REGEX` to run tests matching said regex
+
 ### Caching
 There are two layers of caching going on: CDN caching and browser caching.
 - Going incognito will start a browser off without any caches
