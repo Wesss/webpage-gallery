@@ -6,7 +6,9 @@
 }
 
 .Page-body {
-  min-height: calc(100vh - 160px);
+  width: 700px;
+  margin: 20px auto;
+  min-height: calc(100vh - 200px);
 }
 
 .Page-footer {
