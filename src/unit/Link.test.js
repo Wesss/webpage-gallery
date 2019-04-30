@@ -29,7 +29,6 @@ test("renders a span if given a realtive url to the currently active route", () 
     <Link href="/dashboard">Test</Link>
   );
   var matchJSX = component.find(Route).props().children({match: true});
-  console.log(matchJSX);
   var matchComponent = Enzyme.shallow(<div>{matchJSX}</div>);
   expect(matchComponent.find("span").length).toBe(1);
 });

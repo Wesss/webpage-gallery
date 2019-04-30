@@ -36,7 +36,6 @@ class Link extends Component {
         exact={true}
         children={({ match }) => {
           if (match) {
-            console.log("Hello!");
             return <span className={this.getClasses(className, activeClassName, inverted)} {...titleProp}>
               {children}
             </span>;
