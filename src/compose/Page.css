@@ -1,0 +1,14 @@
+.Page {
+}
+
+.Page-navBar {
+  height: 50px;
+}
+
+.Page-body {
+  min-height: calc(100vh - 160px);
+}
+
+.Page-footer {
+  height: 110px;
+}

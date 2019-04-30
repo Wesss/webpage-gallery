@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import NavBar from "compose/NavBar.js";
-import Footer from "compose/Footer.js";
+import Page from "compose/Page.js";
 import ExhibitCard from "compose/ExhibitCard.js";
 import Clock from "unit/Clock.js";
 import StaticContent from "app/exhibit/StaticContent.js";
@@ -78,15 +77,11 @@ class Gallery extends Component {
       galleryRender = galleryRender.concat(this.renderExhibit(exhibit));
     }
     return(
-      <div>
-        <NavBar/>
-        <div className="Gallery-body">
-          <div className="Gallery">
-            {galleryRender}
-          </div>
+      <Page>
+        <div className="Gallery">
+          {galleryRender}
         </div>
-        <Footer/>
-      </div>
+      </Page>
     );
   }
 
