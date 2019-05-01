@@ -2,6 +2,7 @@ Just another personal webpage
 
 ## Contributing
 - `npm install -D` to init local environment
+- `npm run start` to startup localhost
 - `npm run build` to build, then open up dist/index.html in a web browser
 - `npm run test` to run unit tests
 
