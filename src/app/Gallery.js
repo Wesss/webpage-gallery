@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Page from "compose/Page.js";
 import ExhibitCard from "compose/ExhibitCard.js";
-import Clock from "unit/Clock.js";
+import HelloWorld from "app/exhibit/HelloWorld.js";
 import MeetTheTeam from "app/exhibit/MeetTheTeam.js";
 import './Gallery.css';
 
@@ -53,21 +53,13 @@ class Gallery extends Component {
     const galleryConfig = [
       {
         id: 1,
-        title: "Meet the Team",
-        component: <MeetTheTeam/>
+        title: "Hello World",
+        component: <HelloWorld/>
       },
       {
         id: 2,
-        title: "Stub",
-        component:
-          <div>
-            <Clock/>
-            <br/>
-            <br/>
-            <div>Project is currently under catstruction~</div>
-            <br/>
-            <img className="CatImage" style={{maxWidth:"600px"}} src="https://i.imgur.com/SisWrr0.jpg"/>
-          </div>
+        title: "Meet the Team",
+        component: <MeetTheTeam/>
       },
     ]
 
