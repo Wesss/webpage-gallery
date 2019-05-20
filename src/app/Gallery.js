@@ -3,6 +3,7 @@ import Page from "compose/Page.js";
 import ExhibitCard from "compose/ExhibitCard.js";
 import HelloWorld from "app/exhibit/HelloWorld.js";
 import MeetTheTeam from "app/exhibit/MeetTheTeam.js";
+import TileRotations from "app/exhibit/TileRotations.js";
 import './Gallery.css';
 
 class Gallery extends Component {
@@ -60,6 +61,11 @@ class Gallery extends Component {
         id: 2,
         title: "Meet the Team",
         component: <MeetTheTeam/>
+      },
+      {
+        id: 3,
+        title: "Tile Rotations",
+        component: <TileRotations/>
       },
     ]
 
