@@ -11,7 +11,7 @@ class TileRotations extends Component {
   componentDidMount() {
     this.canvas = this.canvasRef.current;
     this.ctx = this.canvas.getContext("2d");
-    this.tiles = [new Tile(100, 100), new Tile(200, 200)];
+    this.lattice = new TileLattice();
 
     this.interval = setInterval(
       () => this.tick(),
@@ -28,7 +28,7 @@ class TileRotations extends Component {
     var ctx = this.ctx;
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    this.tiles.forEach(tile => tile.draw(this.ctx));
+    this.lattice.draw(ctx);
   }
 
   render() {
@@ -40,15 +40,31 @@ class TileRotations extends Component {
   }
 }
 
+class TileLattice {
+  constructor() {
+    this.tiles = [];
+    for (var i = 0; i < 5; i++) {
+      for (var j = 0; j < 5; j++) {
+        this.tiles.push(new Tile((i * 100) + 50, (j * 100) + 50, 25));
+      }
+    }
+  }
+
+  draw(ctx) {
+    this.tiles.forEach(tile => tile.draw(ctx));
+  }
+}
+
 class Tile {
-  constructor(x, y) {
+  constructor(x, y, radius) {
     this.x = x;
     this.y = y;
+    this.radius = radius;
   }
 
   draw(ctx) {
     ctx.beginPath();
-    ctx.arc(this.x, this.y, 20, 0, 2 * Math.PI);
+    ctx.arc(this.x, this.y, this.radius, 0, 2 * Math.PI);
     ctx.stroke();
   }
 }
