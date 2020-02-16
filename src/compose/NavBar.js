@@ -11,7 +11,7 @@ class NavBar extends Component {
           Home
         </Link>
         <Link className="NavBar-link" activeClassName="NavBar-link-active" href={"/about"}>
-          About Me
+          About
         </Link>
         <Link className="NavBar-link" activeClassName="NavBar-link-active" href={"/gallery"}>
           Gallery

@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import Page from "compose/Page.js";
 import ExhibitCard from "compose/ExhibitCard.js";
-import HelloWorld from "app/exhibit/HelloWorld.js";
-import MeetTheTeam from "app/exhibit/MeetTheTeam.js";
+import Tiles from "app/exhibit/Tiles.js";
 import './Gallery.css';
 
 class Gallery extends Component {
@@ -52,14 +51,9 @@ class Gallery extends Component {
     // TODO abstract config out of this file, make an exhibit data class?
     const galleryConfig = [
       {
-        id: 1,
-        title: "Hello World",
-        component: <HelloWorld/>
-      },
-      {
-        id: 2,
-        title: "Meet the Team",
-        component: <MeetTheTeam/>
+        id: 0,
+        title: "Tiles",
+        component: <Tiles/>
       },
     ]
 

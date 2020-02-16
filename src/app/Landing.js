@@ -17,7 +17,7 @@ class Landing extends Component {
             </Headline>
           </div>
           <Button linkTo={"/about"} inverted={true} className="u-marginRight">
-            About Me
+            About
           </Button>
           <Button linkTo={"/gallery"} inverted={true}>
             View Gallery

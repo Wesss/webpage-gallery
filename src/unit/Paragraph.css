@@ -3,3 +3,7 @@
   font: inherit;
   font-size: 16px;
 }
+
+.Paragraph--italic {
+  font-style: italic;
+}
