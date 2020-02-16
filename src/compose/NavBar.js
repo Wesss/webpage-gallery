@@ -10,6 +10,9 @@ class NavBar extends Component {
         <Link className="NavBar-link" exact activeClassName="NavBar-link-active" href={"/"}>
           Home
         </Link>
+        <Link className="NavBar-link" activeClassName="NavBar-link-active" href={"/about"}>
+          About Me
+        </Link>
         <Link className="NavBar-link" activeClassName="NavBar-link-active" href={"/gallery"}>
           Gallery
         </Link>

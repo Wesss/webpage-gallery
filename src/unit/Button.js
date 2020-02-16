@@ -6,7 +6,8 @@ import "./Button.css"
 // TODO test rendering without onclick Prop
 class Button extends Component {
   render() {
-    var className = "Button";
+    var className = this.props.className;
+    className += " Button";
     if (this.props.inverted) {
       className += " Button--inverted";
     }
