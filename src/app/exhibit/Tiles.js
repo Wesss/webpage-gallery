@@ -87,7 +87,7 @@ class Patterns {
         checkShow(x, y, interval, maxInterval) {
           var isHalfway = math.isHalfway(interval, maxInterval);
           var step = math.getStep(interval, maxInterval / 2, 24);
-          var transition = (x + y) + (((x + y) % 2) * 3) <= step * 2;
+          var transition = Math.abs(x - 7.5) + Math.abs(y - 7.5) <= step;
           return transition == isHalfway;
         }
       },
@@ -152,9 +152,9 @@ class Tile extends Component {
         <CSSTransitionGroup
           transitionName="example"
           transitionAppear={true}
-          transitionAppearTimeout={900}
-          transitionEnterTimeout={900}
-          transitionLeaveTimeout={900}>
+          transitionAppearTimeout={600}
+          transitionEnterTimeout={600}
+          transitionLeaveTimeout={600}>
             {display}
         </CSSTransitionGroup>
       </div>
