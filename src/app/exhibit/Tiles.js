@@ -7,21 +7,10 @@ import "./Tiles.css";
 class Tiles extends Component {
   constructor(props) {
     super(props);
-    var table = [];
-    for (var y = 0; y < 16; y++) {
-      var row = [];
-      for (var x = 0; x < 16; x++) {
-        row.push({
-          show: false
-        });
-      }
-      table.push(row)
-    }
-    this.state = {table: table};
+    this.state = {counter: 0};
   }
 
   componentDidMount() {
-    this.cycleCounter = 0;
     this.timerID = setInterval(
       () => this.tick(),
       500
@@ -32,54 +21,28 @@ class Tiles extends Component {
     clearInterval(this.timerID);
   }
 
-  // returns true when the cell at the given coordinates is to
-  // start transitioning
-  checkTransition(x, y, interval) {
-    return interval > 1 || (x + y) % 2 == 0;
-  }
-
   tick() {
-    var isShowing = this.cycleCounter < 8;
-    var interval = this.cycleCounter % 8;
-
-    var table = this.state.table;
-    for (var y = 0; y < 16; y++) {
-      for (var x = 0; x < 16; x++) {
-        var curShow = table[y][x].show;
-        var newShow;
-        if (isShowing) {
-          newShow = curShow || this.checkTransition(x, y, interval)
-        } else {
-          newShow = curShow && !this.checkTransition(x, y, interval)
-        }
-        table[y][x].show = newShow;
-      }
+    var counter = this.state.counter + 1;
+    if (counter == 16) {
+      counter = 0;
     }
-    this.setState({table: table});
-
-    this.cycleCounter++;
-    if (this.cycleCounter == 16) {
-      this.cycleCounter = 0;
-    }
+    this.setState({counter: counter});
   }
 
   render() {
-    var table = this.state.table;
-    var tableRender = [];
-    for (var y = 0; y < table.length; y++) {
-      var row = table[y];
-      var rowRender = [];
-      for (var x = 0; x < row.length; x++) {
-        var cell = row[x];
-        var cellRender = 
+    var table = [];
+    for (var y = 0; y < 16; y++) {
+      var row = [];
+      for (var x = 0; x < 16; x++) {
+        var cell =
           <td key={x + "-" + y}>
-            <Tile show={cell.show}/>
+            <Tile x={x} y={y} counter={this.state.counter}/>
           </td>;
-        rowRender.push(cellRender);
+        row.push(cell);
       }
-      tableRender.push(
+      table.push(
         <tr key={y}>
-          {rowRender}
+          {row}
         </tr>
       );
     }
@@ -87,7 +50,7 @@ class Tiles extends Component {
     return(
       <table align="center">
         <tbody>
-          {tableRender}
+          {table}
         </tbody>
       </table>
     );
@@ -95,9 +58,32 @@ class Tiles extends Component {
 }
 
 class Tile extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {show: false};
+  }
+
+  // returns true when the cell at the given coordinates is to
+  // start transitioning
+  checkTransition(x, y, interval) {
+    return interval > 1 || (x + y) % 2 == 0;
+  }
+
   render() {
+    var isFadingIn = this.props.counter < 8;
+    var interval = this.props.counter % 8;
+    var x = this.props.x;
+    var y = this.props.y;
+
+    var show;
+    if (isFadingIn) {
+      show = this.checkTransition(x, y, interval)
+    } else {
+      show = !this.checkTransition(x, y, interval)
+    }
+
     var display = null;
-    if (this.props.show) {
+    if (show) {
       display = <div className="Tiles--TileDisplay"></div>;
     }
     return(
@@ -116,7 +102,10 @@ class Tile extends Component {
 }
 
 Tile.propTypes = {
-  show: PropTypes.bool.isRequired
+  x: PropTypes.number.isRequired,
+  y: PropTypes.number.isRequired,
+  interval: PropTypes.number.isRequired,
+  isShowing: PropTypes.bool.isRequired,
 };
 
 export default Tiles;
