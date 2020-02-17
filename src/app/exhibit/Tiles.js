@@ -5,15 +5,20 @@ import Paragraph from "unit/Paragraph.js";
 import "./Tiles.css";
 
 class Tiles extends Component {
+  
   constructor(props) {
     super(props);
-    this.state = {counter: 0};
+    this.state = {
+      interval: 0,
+      pattern : Patterns.getPattern()
+    };
+    this.maxInterval = 48;
   }
 
   componentDidMount() {
     this.timerID = setInterval(
       () => this.tick(),
-      500
+      125
     );
   }
 
@@ -22,11 +27,13 @@ class Tiles extends Component {
   }
 
   tick() {
-    var counter = this.state.counter + 1;
-    if (counter == 16) {
-      counter = 0;
+    var interval = this.state.interval + 1;
+    var pattern = this.state.pattern;
+    if (interval == this.maxInterval) {
+      interval = 0;
+      pattern = Patterns.getPattern();
     }
-    this.setState({counter: counter});
+    this.setState({interval: interval, pattern: pattern});
   }
 
   render() {
@@ -36,7 +43,11 @@ class Tiles extends Component {
       for (var x = 0; x < 16; x++) {
         var cell =
           <td key={x + "-" + y}>
-            <Tile x={x} y={y} counter={this.state.counter}/>
+            <Tile x={x}
+              y={y}
+              interval={this.state.interval}
+              maxInterval={this.maxInterval}
+              pattern={this.state.pattern}/>
           </td>;
         row.push(cell);
       }
@@ -57,30 +68,80 @@ class Tiles extends Component {
   }
 }
 
+class Patterns {
+
+  static isHalfway(interval, maxInterval) {
+    return interval < (maxInterval / 2);
+  }
+  
+  static getStep(interval, maxInterval, maxStep) {
+    return Math.floor(
+      (interval % maxInterval) / (maxInterval / maxStep)
+    );
+  }
+
+  static getPatterns() {
+    var math = this;
+    return [
+      {
+        checkShow(x, y, interval, maxInterval) {
+          var isHalfway = math.isHalfway(interval, maxInterval);
+          var step = math.getStep(interval, maxInterval / 2, 24);
+          var transition = (x + y) + (((x + y) % 2) * 3) <= step * 2;
+          return transition == isHalfway;
+        }
+      },
+      {
+        checkShow(x, y, interval, maxInterval) {
+          var isHalfway = math.isHalfway(interval, maxInterval);
+          var step = math.getStep(interval, maxInterval / 2, 48);
+          var transition = (x + y) <= step;
+          return transition == isHalfway;
+        }
+      },
+      {
+        checkShow(x, y, interval, maxInterval) {
+          var isHalfway = math.isHalfway(interval, maxInterval);
+          var step = math.getStep(interval, maxInterval / 2, 24);
+          var transition = x <= step;
+          return transition == isHalfway;
+        }
+      }
+    ];
+  }
+  
+  // returns a random int between min (inclusive) and max (exclusive)
+  static getRandom(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max - 1);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+
+  // returns a random pattern
+  static getPattern() {
+    var patterns = this.getPatterns();
+    return patterns[this.getRandom(0, patterns.length)];
+  }
+}
+
 class Tile extends Component {
+  static checkShow(x, y, interval, maxInterval, pattern) {
+    return pattern.checkShow(x, y, interval, maxInterval);
+  }
+
   constructor(props) {
     super(props);
     this.state = {show: false};
   }
 
-  // returns true when the cell at the given coordinates is to
-  // start transitioning
-  checkTransition(x, y, interval) {
-    return interval > 1 || (x + y) % 2 == 0;
-  }
-
   render() {
-    var isFadingIn = this.props.counter < 8;
-    var interval = this.props.counter % 8;
-    var x = this.props.x;
-    var y = this.props.y;
-
-    var show;
-    if (isFadingIn) {
-      show = this.checkTransition(x, y, interval)
-    } else {
-      show = !this.checkTransition(x, y, interval)
-    }
+    var show = Tile.checkShow(
+      this.props.x,
+      this.props.y,
+      this.props.interval,
+      this.props.maxInterval,
+      this.props.pattern
+    );
 
     var display = null;
     if (show) {
@@ -91,9 +152,9 @@ class Tile extends Component {
         <CSSTransitionGroup
           transitionName="example"
           transitionAppear={true}
-          transitionAppearTimeout={1000}
-          transitionEnterTimeout={1000}
-          transitionLeaveTimeout={1000}>
+          transitionAppearTimeout={900}
+          transitionEnterTimeout={900}
+          transitionLeaveTimeout={900}>
             {display}
         </CSSTransitionGroup>
       </div>
@@ -105,7 +166,8 @@ Tile.propTypes = {
   x: PropTypes.number.isRequired,
   y: PropTypes.number.isRequired,
   interval: PropTypes.number.isRequired,
-  isShowing: PropTypes.bool.isRequired,
+  maxInterval: PropTypes.number.isRequired,
+  pattern: PropTypes.object.isRequired,
 };
 
 export default Tiles;
