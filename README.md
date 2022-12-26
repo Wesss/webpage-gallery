@@ -3,7 +3,8 @@ Just another personal webpage
 ## Contributing
 - `npm install -D` to init local environment
 - `npm run start` to startup localhost
-- `npm run build` to build, then open up dist/index.html in a web browser
+- `npm run build` to build, inpsect entry point dist/index.html
+-- NOTE: opening html file in browser does not work; the lack of server to call back to causes issues.
 - `npm run test` to run unit tests
 
 - On master push, the src files are compiled into a production ready distribution and uploaded to an S3 bucket set up to host a static website at `wes-develop.com`
@@ -18,3 +19,8 @@ There are two layers of caching going on: CDN caching and browser caching.
 
 ### Magic to be aware of
 - Theres a bit of import path aliasing going on in .bablrc under the module-resolver plugin. Aliasing the top most folders allows us to write `import common/Headline.js` instead of `import ../../../../common/Headline.js`.
+
+### TODO WESD
+- get sidepage loaded on url w/different path
+-- block indexing via https://developers.google.com/search/docs/crawling-indexing/block-indexing
+-- need to upload to new S3 bucket? upload to same, add new route directly to a new index file entry point?
