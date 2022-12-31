@@ -6,7 +6,9 @@
   "scripts": {
     "start": "webpack-dev-server --open",
     "test": "jest",
-    "build": "rm -rf ./dist/ && webpack --mode production"
+    "build": "rm -rf ./dist/ && webpack --mode production",
+    "startChroma": "webpack-dev-server --open --config webpack.chroma.config.js",
+    "buildChroma": "rm -rf ./dist/ && webpack --mode production --config webpack.chroma.config.js"
   },
   "repository": {
     "type": "git",

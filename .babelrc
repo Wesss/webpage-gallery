@@ -8,6 +8,7 @@
         "alias": {
           "src": "./src",
           "app": "./src/app",
+          "appChroma": "./src/appChroma",
           "compose": "./src/compose",
           "unit": "./src/unit",
           "icon": "./src/icon"

@@ -56,7 +56,6 @@ _steps:
 jobs:
   build:
     docker:
-      # TODO circleci/?
       - image: node:8.11.4
     environment:
       <<: *environment_default
@@ -68,6 +67,21 @@ jobs:
       - run:
           name: Build application
           command: npm run build
+      - *copy_dist_to_workspace
+      - *persist_workspace
+  build_chroma:
+    docker:
+      - image: node:8.11.4
+    environment:
+      <<: *environment_default
+    steps:
+      - checkout
+      - *make_dirs
+      - *update_npm
+      - *install_npm_packages
+      - run:
+          name: Build application
+          command: npm run buildChroma
       - *copy_dist_to_workspace
       - *persist_workspace
   test:
@@ -104,18 +118,40 @@ jobs:
             ~/.local/bin/aws cloudfront create-invalidation \
               --distribution-id E1N4FFELPXS3GO \
               --paths /index.html
-
+  upload_chroma:
+    docker:
+      - image: circleci/python:3.7.2
+    environment:
+      <<: *environment_circleci
+    steps:
+      - *make_dirs
+      - *attach_workspace
+      - *extract_dist_from_workspace
+      - run:
+          name: Install aws cli
+          command: |
+            pip3 install awscli==1.16.127 --user
+      - run:
+          name: Sync webserver
+          command: ~/.local/bin/aws s3 sync dist/ s3://chroma-app/ --delete
 
 workflows:
   version: 2
   on_push:
     jobs:
-      - build:
-          <<: *cond_on_branch
       - test:
+          <<: *cond_on_branch
+      - build:
           <<: *cond_on_branch
       - upload:
           <<: *cond_master
           requires:
             - build
+            - test
+      - build_chroma:
+          <<: *cond_on_branch
+      - upload_chroma:
+          <<: *cond_master
+          requires:
+            - build_chroma
             - test
