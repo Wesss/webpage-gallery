@@ -3,7 +3,6 @@ import { BrowserRouter, Route } from "react-router-dom";
 import Gallery from "./Gallery.js";
 import Landing from "./Landing.js";
 import About from "./About.js";
-import Link from "unit/Link";
 
 class App extends Component {
   render() {
