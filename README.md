@@ -18,7 +18,7 @@ There are two layers of caching going on: CDN caching and browser caching.
 - http://d2yqfpfx73rb4f.cloudfront.net to request from the CDN entrypoint (skip DNS routing)
 - http://wes-develop.com.s3-website-us-west-2.amazonaws.com/ to request the root `index.html` directly from the S3 bucket (skip CDN and DNS routing).
 
-- there is no CDN caching on the Chroma app. Visit directly at http://chroma-app.s3-website-us-west-2.amazonaws.com/
+- there is no CDN caching or domain name routing on the Chroma app. Visit directly at http://chroma-app.s3-website-us-west-2.amazonaws.com/
 
 ### Magic to be aware of
 - Theres a bit of import path aliasing going on in .bablrc under the module-resolver plugin. Aliasing the top most folders allows us to write `import common/Headline.js` instead of `import ../../../../common/Headline.js`.

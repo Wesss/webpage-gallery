@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import PropTypes from 'prop-types';
-import Button from "unit/Button.js";
 
 class Task extends Component {
   render() {

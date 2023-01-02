@@ -6,8 +6,10 @@ import "./Button.css"
 // TODO test rendering without onclick Prop
 class Button extends Component {
   render() {
-    var className = this.props.className;
-    className += " Button";
+    var className = "Button";
+    if (this.props.className) {
+      className += " " + this.props.className;
+    }
     if (this.props.inverted) {
       className += " Button--inverted";
     }
@@ -15,12 +17,14 @@ class Button extends Component {
     var render;
     if (this.props.linkTo) {
       render =
+        // TODO WESD honor diabled prop for link versions of buttons
         <Link to={this.props.linkTo} className={className} onClick={this.props.onClick}>
           {this.props.children}
         </Link>;
     } else {
       render =
-        <button className={className} onClick={this.props.onClick}>
+        // TODO WESD style disabled buttons to not look clickable
+        <button className={className} onClick={this.props.onClick} disabled={this.props.disabled}>
           {this.props.children}
         </button>;
     }
@@ -33,6 +37,7 @@ Button.propTypes = {
   linkTo: PropTypes.string,
   children: PropTypes.string.isRequired,
   inverted: PropTypes.bool,
+  disabled: PropTypes.bool
 };
 
 export default Button;

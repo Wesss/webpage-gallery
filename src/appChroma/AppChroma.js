@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import Task from "./Task.js";
+import TaskManager from "./TaskManager.js";
 
 class App extends Component {
   render() {
     return(
-      <Task>Do the thing!</Task>
+      <TaskManager startTask="startStub"/>
     );
   }
 }
