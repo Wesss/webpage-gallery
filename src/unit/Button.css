@@ -10,11 +10,11 @@
   text-decoration: none;
 }
 
-.Button:hover {
+.Button:hover:enabled {
   background-color: var(--color-dark-tinted-1);
 }
 
-.Button:active {
+.Button:active:enabled {
   background-color: var(--color-dark-tinted-2);
 }
 
@@ -29,4 +29,18 @@
 
 .Button--inverted:active {
   background-color: var(--color-light-tinted-2);
+}
+
+.Button:disabled,
+.Button[disabled]{
+  border: 1px solid var(--color-dark-tinted-2);
+  background-color: var(--color-dark-tinted-1);
+  color: var(--color-dark-tinted-2);
+}
+
+.Button--inverted:disabled,
+.Button--inverted[disabled]{
+  border: 1px solid var(--color-dark-tinted-1);
+  background-color: var(--color-dark-tinted-2);
+  color: var(--color-dark-tinted-1);
 }

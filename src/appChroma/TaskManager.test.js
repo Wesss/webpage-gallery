@@ -7,6 +7,6 @@ Enzyme.configure({ adapter: new Adapter() });
 
 test("renders", () => {
   Enzyme.render(
-    <TaskManager />
+    <TaskManager startTask="some task here"/>
   );
 });

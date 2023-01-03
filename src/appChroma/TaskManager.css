@@ -1,0 +1,15 @@
+.TaskManager {
+  display: flex;
+  /* 100% view height/view width */
+  height: 100vh;
+  width: 100vw;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 25px;
+}
+
+.TaskManager--Buttons {
+  display: flex;
+  gap: 15px;
+}
