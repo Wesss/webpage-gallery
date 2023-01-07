@@ -2,15 +2,22 @@ import React, { Component } from "react";
 import PropTypes from 'prop-types';
 import './Task.css'
 
-class Task extends Component {
+export class TaskModel {
+  // the task to display
+  task = "";
+  constructor() {}
+}
+
+export default class Task extends Component {
   render() {
     var className = "Task";
     if (this.props.className) {
       className += " this.props.className" 
     }
+    var model = this.props.model;
     return(
       <div className={className}>
-        {this.props.children}
+        {model.task}
       </div>
     );
   }
@@ -18,8 +25,6 @@ class Task extends Component {
 
 Task.propTypes = {
   className: PropTypes.string,
-  // The text to display
-  children: PropTypes.string.isRequired,
+  model: PropTypes.instanceOf(TaskModel).isRequired
 };
 
-export default Task;

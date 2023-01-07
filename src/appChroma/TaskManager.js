@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from 'prop-types';
-import Task from './Task.js';
+import Task, { TaskModel } from './Task.js';
 import Button from "unit/Button.js";
 import "./TaskManager.css"
 
@@ -31,9 +31,11 @@ class TaskManager extends Component {
   }
 
   render() {
+    var taskModel = new TaskModel();
+    taskModel.task = this.props.startTask;
     return (
       <div className="TaskManager">
-        <Task>{this.props.startTask}</Task>
+        <Task model={taskModel} />
         <div className="TaskManager--Buttons">
           <Button onClick={this.prev} disabled={!this.state.prev}>Prev</Button>
           <Button onClick={this.next} disabled={!this.state.next}>Next</Button>

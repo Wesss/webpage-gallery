@@ -1,14 +1,14 @@
 import React from 'react';
 import Enzyme from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import Task from './Task.js';
+import Task, { TaskModel } from './Task.js';
 
 Enzyme.configure({ adapter: new Adapter() });
 
 test("renders", () => {
+  var model = new TaskModel();
+  model.task = "Do the task model";
   Enzyme.render(
-    <Task>
-      Do the thing.
-    </Task>
+    <Task model={model} />
   );
 });
