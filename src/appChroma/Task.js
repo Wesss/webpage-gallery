@@ -5,6 +5,8 @@ import './Task.css'
 export class TaskModel {
   // the task to display
   task = "";
+  // whether or not another task exists
+  next = true;
   constructor() {}
 }
 
@@ -12,7 +14,7 @@ export default class Task extends Component {
   render() {
     var className = "Task";
     if (this.props.className) {
-      className += " this.props.className" 
+      className += " " + this.props.className 
     }
     var model = this.props.model;
     return(

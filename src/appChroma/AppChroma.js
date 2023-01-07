@@ -1,10 +1,11 @@
 import React, { Component } from "react";
-import TaskManager from "./TaskManager.js";
+import TaskManager, {TaskManagerModel} from "./TaskManager.js";
 
 class App extends Component {
   render() {
+    var model = TaskManagerModel.GetModel("testStart");
     return(
-      <TaskManager startTask="startStub"/>
+      <TaskManager model={model}/>
     );
   }
 }

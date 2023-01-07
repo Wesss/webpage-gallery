@@ -8,8 +8,3 @@
   align-items: center;
   gap: 25px;
 }
-
-.TaskManager--Buttons {
-  display: flex;
-  gap: 15px;
-}
