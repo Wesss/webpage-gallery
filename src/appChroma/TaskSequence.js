@@ -2,35 +2,16 @@ import React, { Component } from "react";
 import PropTypes from 'prop-types';
 import Task, { TaskModel } from './Task.js';
 import Button from "unit/Button.js";
-import "./TaskManager.css"
+import "./TaskSequence.css"
 
 
-export class TaskManagerModel {
-  static GetModel(startTask) {
-    var res = new TaskManagerModel();
-
-    // TODO WESD move these to some other home, to be organized better when we scale out?
-    function* testgen() {
-      yield 'do one thing';
-      yield 'do another thing';
-      return 'wake up!';
-    };
-
-    switch(startTask) {
-      // TODO WESD make this an enum lookup?
-      case "testStart":
-        res.generator = testgen();
-        break;
-      default:
-        throw "Unhandled startTask: " + startTask
-    }
-
-    return res;
-  }
+export class TaskSequenceModel {
 
   // the generator function containing stream of tasks to display
   generator;
-  constructor() {}
+  constructor(generator) {
+    this.generator = generator;
+  }
 
   nextTask = () => {
     var res = new TaskModel();
@@ -42,7 +23,7 @@ export class TaskManagerModel {
   }
 }
 
-export default class TaskManager extends Component {
+export default class TaskSequence extends Component {
 
   constructor(props) {
     super(props);
@@ -66,7 +47,7 @@ export default class TaskManager extends Component {
 
   render() {
     return (
-      <div className="TaskManager">
+      <div className="TaskSequence">
         <Task model={this.state.taskModel} />
         <Button onClick={this.next} disabled={!this.state.next}>Next</Button>
       </div>
@@ -74,6 +55,6 @@ export default class TaskManager extends Component {
   }
 }
 
-TaskManager.propTypes = {
-  model: PropTypes.instanceOf(TaskManagerModel).isRequired
+TaskSequence.propTypes = {
+  model: PropTypes.instanceOf(TaskSequenceModel).isRequired
 };
