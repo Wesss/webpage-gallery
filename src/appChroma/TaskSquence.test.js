@@ -7,7 +7,7 @@ import TaskFactory from './tasks/TaskFactory.js';
 Enzyme.configure({ adapter: new Adapter() });
 
 test("renders", () => {
-  var model = TaskFactory.getModel("testStub");
+  var model = TaskFactory.getModel("dailyWakeUp");
   Enzyme.render(
     <TaskSequence model={model}/>
   );

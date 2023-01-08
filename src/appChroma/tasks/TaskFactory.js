@@ -3,35 +3,49 @@ import TaskSequence, {TaskSequenceModel} from "../TaskSequence.js";
 export default class TaskFactory {
 
   /*
-    returns an array of all valid task sequence names.
+    returns an dictionary<category, tasknames[]> of all valid task sequence names.
   */
   static getTasks() {
-    return Object.keys(new TaskFactory());
+    var res = {};
+    res.schedules = Object.keys(new ScheduleTasks());
+    res.triggers = Object.keys(new TriggerTasks());
+    return res;
   }
 
   /*
     returns a TaskSequenceModel matching the given name.
   */
   static getModel(task) {
-    var validTasks = TaskFactory.getTasks();
-    if (!validTasks.includes(task)) {
-      throw new Exception("Task Squence is not present on factory: " + task);
+    var dict = TaskFactory.getTasks();
+
+    var factory = null;
+    if (dict.schedules.includes(task)) {
+      factory = new ScheduleTasks();
+    } else if (dict.triggers.includes(task)) {
+      factory = new TriggerTasks();
+    } else {
+      throw "Task Squence is not present: " + task;
     }
 
-    var factory = new TaskFactory();
     var generator = factory[task]();
     return new TaskSequenceModel(generator);
   }
+}
 
-  testStub = function*() {
+class ScheduleTasks {
+  dailyWakeUp = function*() {
     yield 'do one thing';
     yield 'do another thing';
     return 'wake up!';
   };
+}
 
-  testStub2 = function*() {
-    yield 'do 2 thing';
-    yield 'do another thing 2';
-    return 'wake up!';
+class TriggerTasks {
+  randomQuestion = function*() {
+    return 'random question';
+  };
+
+  danbooruPic = function*() {
+    return 'danbooru pic';
   };
 }
