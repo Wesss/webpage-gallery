@@ -6,8 +6,7 @@ import Task, { TaskModel } from './Task.js';
 Enzyme.configure({ adapter: new Adapter() });
 
 test("renders", () => {
-  var model = new TaskModel();
-  model.task = "Do the task model";
+  var model = new TaskModel("Do the task model");
   Enzyme.render(
     <Task model={model} />
   );

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import TaskSequence, {TaskSequenceModel} from "./TaskSequence.js";
 import TaskMenu from './TaskMenu.js';
 import TaskFactory from './tasks/TaskFactory.js';
+import './AppChroma.css'
 
 class App extends Component {
 
@@ -29,7 +30,7 @@ class App extends Component {
       res = <TaskSequence model={tasks}/>;
     }
     
-    return (res);
+    return (<div className="App">{res}</div>);
   }
 }
 

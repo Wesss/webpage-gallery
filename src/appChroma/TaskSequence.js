@@ -14,11 +14,8 @@ export class TaskSequenceModel {
   }
 
   nextTask = () => {
-    var res = new TaskModel();
     var genRes = this.generator.next();
-    // TODO WESD move task generation to task model
-    res.task = genRes.value;
-    res.next = !genRes.done;
+    var res = new TaskModel(genRes);
     return res;
   }
 }

@@ -7,7 +7,14 @@ export class TaskModel {
   task = "";
   // whether or not another task exists
   next = true;
-  constructor() {}
+  constructor(genInput) {
+    var display = genInput.value;
+    if (typeof input === 'string') {
+      display = <span>{display}</span>;
+    }
+    this.task = display;
+    this.next = !genInput.done;
+  }
 }
 
 export default class Task extends Component {

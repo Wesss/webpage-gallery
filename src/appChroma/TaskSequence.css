@@ -1,8 +1,7 @@
 .TaskSequence {
   display: flex;
-  /* 100% view height/view width */
   height: 100vh;
-  width: 100vw;
+  width: 65vw;
   flex-direction: column;
   justify-content: center;
   align-items: center;
