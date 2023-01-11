@@ -1,5 +1,6 @@
 import React from "react";
 import TaskSequence, {TaskSequenceModel} from "../TaskSequence.js";
+import GenUtil from "./GenUtil.js";
 
 export default class TaskFactory {
 
@@ -64,18 +65,14 @@ class TaskParts {
     linkGen.ageFilter2 = "<=2day";
     yield <span>Go to {GenUtil.createLink(linkGen.getUrl(), 'this link')}.</span>;
     
-    yield 'From the first page of results, choose an image that you relate to the most right now.';
+    yield GenUtil.createList(
+      'From the first page of results, choose an image that:',
+      ['You relate to the most right now.']
+    );
     yield 'Send me the image, in full resolution.';
     yield 'Tell me how you feel right now and why you relate to the image.';
     yield 'Tell me how you feel towards me right now.';
   };
-}
-
-class GenUtil {
-  static createLink(url, text = null) {
-    if (text === null) text = url;
-    return <a target="_blank" href={url}>{text}</a>
-  }
 }
 
 class DanbooruLink {
