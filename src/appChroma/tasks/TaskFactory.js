@@ -1,6 +1,7 @@
 import React from "react";
 import TaskSequence, {TaskSequenceModel} from "../TaskSequence.js";
 import GenUtil from "./GenUtil.js";
+import RandomUtil from "./RandomUtil.js";
 
 export default class TaskFactory {
 
@@ -36,18 +37,27 @@ export default class TaskFactory {
 
 class ScheduleTasks {
   dailyWakeUp = function*() {
-    yield* TaskParts.danbooruPic();
+    var randomTasks = [
+      TaskParts.danbooruPic(),
+      TaskParts.hypnohubPic(),
+    ]
+    yield* RandomUtil.randomFromItems(randomTasks);
     return 'Wake up and continue your day~.';
   };
 }
 
 class TriggerTasks {
-  randomQuestion = function*() {
-    return 'random question.';
-  };
+  // randomQuestion = function*() {
+  //   return 'random question.';
+  // };
 
   danbooruPic = function*() {
     yield* TaskParts.danbooruPic();
+    return 'Wake up and continue your day~.';
+  };
+
+  hypnohubPic = function*() {
+    yield* TaskParts.hypnohubPic();
     return 'Wake up and continue your day~.';
   };
 
@@ -73,11 +83,32 @@ class TaskParts {
     yield 'Tell me how you feel right now and why you relate to the image.';
     yield 'Tell me how you feel towards me right now.';
   };
+
+  static hypnohubPic = function*() {
+    var linkGen = new HypnoHubLink();
+    linkGen.video = false;
+    linkGen.comic = false;
+    linkGen.text = false;
+    yield <span>Go to {GenUtil.createLink(linkGen.getUrl(), 'this link')}.</span>;
+    
+    yield GenUtil.createList(
+      'From the first page of results, choose an image that:',
+      [
+        'Features a hypnotized female.',
+        'Looks the most attractive to you'
+      ]
+    );
+    yield 'Send me the image, in full resolution.';
+    yield 'Now, fantasize about being the girl in the image and come up with suggestions you would follow as them.';
+    yield 'Set a timer for 2 minutes, and masturbate to your idea.';
+    yield 'Tell me about the fatasy you have come up with, and tell me how truned on it makes you feel.';
+    yield 'Tell me how you feel towards me right now.';
+  };
 }
 
 class DanbooruLink {
   // bool? tags
-  animated = false;
+  animated = null;
   // string? age filter. ex ">=2day", "<=1 day"
   ageFilter1 = null;
   ageFilter2 = null;
@@ -108,7 +139,55 @@ class DanbooruLink {
     if (tags.length > 0) {
       res += "?tags=" + encodeURIComponent(tags.join(' '));
     }
-    console.log(res);
+    return res;
+  }
+}
+
+class HypnoHubLink {
+  // bool? tags
+  furry = false;
+  animals_only = false;
+  video = null;
+  comic = null;
+  text = null;
+
+  getUrl() {
+    var tags = [];
+    if (this.furry === true) {
+      tags.push("furry");
+    }
+    else if (this.furry === false) {
+      tags.push("-furry");
+    }
+    if (this.animals_only === true) {
+      tags.push("animals_only");
+    }
+    else if (this.animals_only === false) {
+      tags.push("-animals_only");
+    }
+    if (this.video === true) {
+      tags.push("video");
+    }
+    else if (this.video === false) {
+      tags.push("-video");
+    }
+    if (this.comic === true) {
+      tags.push("comic");
+    }
+    else if (this.comic === false) {
+      tags.push("-comic");
+    }
+    if (this.text === true) {
+      tags.push("text");
+    }
+    else if (this.text === false) {
+      tags.push("-text");
+    }
+    
+    var res = "https://hypnohub.net/index.php?page=post&s=list";
+    if (tags.length > 0) {
+      res += "&tags=" + encodeURIComponent(tags.join(' '));
+    }
     return res;
   }
 }
