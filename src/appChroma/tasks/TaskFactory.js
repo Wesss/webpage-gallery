@@ -1,5 +1,5 @@
 import React from "react";
-import TaskSequence, {TaskSequenceModel} from "../TaskSequence.js";
+import {TaskSequenceModel} from "../TaskSequence.js";
 import GenUtil from "./GenUtil.js";
 import RandomUtil from "./RandomUtil.js";
 
@@ -30,18 +30,26 @@ export default class TaskFactory {
       throw "Task Squence is not present: " + task;
     }
 
-    var generator = factory[task]();
+    var random = RandomUtil.FromDateSeed();
+    var generator = factory[task](random);
     return new TaskSequenceModel(generator);
   }
 }
 
 class ScheduleTasks {
-  dailyWakeUp = function*() {
+  dailyWakeUp = function*(random) {
+    yield 'Tell me "I am doing my daily tasks now mommy".';
     var randomTasks = [
       TaskParts.danbooruPic(),
       TaskParts.hypnohubPic(),
+      TaskParts.bunnyVideo(),
     ]
-    yield* RandomUtil.randomFromItems(randomTasks);
+    yield* random.pickItem(randomTasks);
+
+    yield 'Starting with right now, tell me how long you have free and how much privacy you have.';
+    yield 'Next give your best guess on when you will have breaks/rests throughout the day.';
+    yield 'Finally, tell me if you think you will have the energy to complete tasks at the end of the day.';
+
     return 'Wake up and continue your day~.';
   };
 }
@@ -51,14 +59,19 @@ class TriggerTasks {
   //   return 'random question.';
   // };
 
+  bunnyVideo = function*() {
+    yield* TaskParts.danbooruPic();
+    return 'Wake up and go back to discord.';
+  };
+
   danbooruPic = function*() {
     yield* TaskParts.danbooruPic();
-    return 'Wake up and continue your day~.';
+    return 'Wake up and go back to discord.';
   };
 
   hypnohubPic = function*() {
     yield* TaskParts.hypnohubPic();
-    return 'Wake up and continue your day~.';
+    return 'Wake up and go back to discord.';
   };
 
   testingArea = function*() {
@@ -68,6 +81,12 @@ class TriggerTasks {
 }
 
 class TaskParts {
+  static bunnyVideo = function*() {
+    yield 'Tell me "I am watching the bunny video now".';
+    yield <span>Watch {GenUtil.createLink('https://drive.google.com/file/d/1P5SS4cQyRKb9uVsQwrOExwEWzg85Y1jn/view?usp=share_link', 'this video')}.</span>;
+    yield 'Tell me 10 sentences describing how you feel right now.';	
+  }
+
   static danbooruPic = function*() {
     var linkGen = new DanbooruLink();
     linkGen.animated = false;
@@ -87,7 +106,6 @@ class TaskParts {
   static hypnohubPic = function*() {
     var linkGen = new HypnoHubLink();
     linkGen.video = false;
-    linkGen.comic = false;
     linkGen.text = false;
     yield <span>Go to {GenUtil.createLink(linkGen.getUrl(), 'this link')}.</span>;
     

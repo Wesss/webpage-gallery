@@ -1,12 +1,29 @@
 
 export default class RandomUtil {
-  // TODO WESD seed the random, perhaps http://davidbau.com/archives/2010/01/30/random_seeds_coded_hints_and_quintillions.html
-  static randomInteger(min, max) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
+
+  static FromDateSeed() {
+    var dateSeed = new Date();
+    dateSeed.setHours(0, 0, 0, 0);
+    var seed = dateSeed.toLocaleString("en-US", {timeZone: "America/Los_Angeles", year:"numeric", month:"2-digit", day:"2-digit"});
+    return new RandomUtil(seed);
   }
 
-  static randomFromItems(items) {
-    var idx = RandomUtil.randomInteger(0, items.length - 1);
+  constructor(seed) {
+    var seedrandom = require('seedrandom');
+    if (seed === undefined) {
+      this.random = seedrandom();
+    } else {
+      this.random = seedrandom(seed);
+    }
+  }
+ 
+  pickInt(min, max) {
+    var r = this.random();
+    return Math.floor(r * (max - min + 1)) + min;
+  }
+
+  pickItem(items) {
+    var idx = this.pickInt(0, items.length - 1);
     return items[idx];
   }
 }
