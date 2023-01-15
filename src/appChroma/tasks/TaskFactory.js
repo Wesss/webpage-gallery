@@ -37,7 +37,8 @@ export default class TaskFactory {
 }
 
 class ScheduleTasks {
-  dailyWakeUp = function*(random) {
+  dailyTasks = function*(random) {
+    // TODO WESD check to renew ssl before February 12, 2024, 15:59:59 (UTC-08:00)
     yield 'Tell me "I am doing my daily tasks now mommy".';
     var randomTasks = [
       TaskParts.danbooruPic(),
@@ -46,7 +47,9 @@ class ScheduleTasks {
     ]
     yield* random.pickItem(randomTasks);
 
-    yield 'Starting with right now, tell me how long you have free and how much privacy you have.';
+    yield 'Tell me if you feel like being hypnotized right now. Really want it? Neutral? Not feeling it?';
+
+    yield 'Tell me how long you have free right now and how much privacy you have.';
     yield 'Next give your best guess on when you will have breaks/rests throughout the day.';
     yield 'Finally, tell me if you think you will have the energy to complete tasks at the end of the day.';
 
@@ -75,6 +78,7 @@ class TriggerTasks {
   };
 
   testingArea = function*() {
+    yield 'Test 1';
     yield 'This is a place for me to test out new features~ :3';
     return 'This is a place for me to test out new features~ :3 This is a place for me to test out new features~ :3 This is a place for me to test out new features~ :3 This is a place for me to test out new features~ :3 This is a place for me to test out new features~ :3 This is a place for me to test out new features~ :3 This is a place for me to test out new features~ :3 ';
   };

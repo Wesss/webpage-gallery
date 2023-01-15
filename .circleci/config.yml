@@ -25,7 +25,9 @@ _steps:
   make_dirs: &make_dirs
     run:
       name: Make directories
-      command: mkdir $WORKSPACE_PATH
+      command: |
+        mkdir $WORKSPACE_PATH
+        mkdir $WORKSPACE_PATH/dist
   # npm
   update_npm: &update_npm
     run:
@@ -39,7 +41,11 @@ _steps:
   copy_dist_to_workspace: &copy_dist_to_workspace
     run:
       name: Copy dist into workspace
-      command: cp -r $PROJECT_PATH/dist/ $WORKSPACE_PATH/dist/
+      command: cp -r $PROJECT_PATH/dist/ $WORKSPACE_PATH/dist/root
+  copy_dist_to_workspace_chroma: &copy_dist_to_workspace_chroma
+    run:
+      name: Copy chroma dist into workspace
+      command: cp -r $PROJECT_PATH/dist/ $WORKSPACE_PATH/dist/chroma
   persist_workspace: &persist_workspace
     persist_to_workspace:
       root: *WORKSPACE_PATH
@@ -51,7 +57,11 @@ _steps:
   extract_dist_from_workspace: &extract_dist_from_workspace
     run:
       name: Extract dist from workspace
-      command: cp -r $WORKSPACE_PATH/dist/ $PROJECT_PATH/dist/
+      command: cp -r $WORKSPACE_PATH/dist/root $PROJECT_PATH/dist/
+  extract_dist_from_workspace_chroma: &extract_dist_from_workspace_chroma
+    run:
+      name: Extract dist from workspace
+      command: cp -r $WORKSPACE_PATH/dist/chroma $PROJECT_PATH/dist/
 
 jobs:
   build:
@@ -82,7 +92,7 @@ jobs:
       - run:
           name: Build application
           command: npm run buildChroma
-      - *copy_dist_to_workspace
+      - *copy_dist_to_workspace_chroma
       - *persist_workspace
   test:
     docker:
@@ -126,7 +136,7 @@ jobs:
     steps:
       - *make_dirs
       - *attach_workspace
-      - *extract_dist_from_workspace
+      - *extract_dist_from_workspace_chroma
       - run:
           name: Install aws cli
           command: |
@@ -134,6 +144,22 @@ jobs:
       - run:
           name: Sync webserver
           command: ~/.local/bin/aws s3 sync dist/ s3://chroma-app/ --delete
+  upload_chroma2:
+    docker:
+      - image: circleci/python:3.7.2
+    environment:
+      <<: *environment_circleci
+    steps:
+      - *make_dirs
+      - *attach_workspace
+      - *extract_dist_from_workspace_chroma
+      - run:
+          name: Install aws cli
+          command: |
+            pip3 install awscli==1.16.127 --user
+      - run:
+          name: Sync webserver
+          command: ~/.local/bin/aws s3 sync dist/ s3://wes-develop.com/chroma-app/ --delete
 
 workflows:
   version: 2
@@ -154,4 +180,10 @@ workflows:
           <<: *cond_master
           requires:
             - build_chroma
+            - test
+      - upload_chroma2:
+          <<: *cond_master
+          requires:
+            - build_chroma
+            - upload
             - test
