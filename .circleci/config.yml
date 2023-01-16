@@ -143,22 +143,6 @@ jobs:
             pip3 install awscli==1.16.127 --user
       - run:
           name: Sync webserver
-          command: ~/.local/bin/aws s3 sync dist/ s3://chroma-app/ --delete
-  upload_chroma2:
-    docker:
-      - image: circleci/python:3.7.2
-    environment:
-      <<: *environment_circleci
-    steps:
-      - *make_dirs
-      - *attach_workspace
-      - *extract_dist_from_workspace_chroma
-      - run:
-          name: Install aws cli
-          command: |
-            pip3 install awscli==1.16.127 --user
-      - run:
-          name: Sync webserver
           command: ~/.local/bin/aws s3 sync dist/ s3://wes-develop.com/chroma-app/ --delete
 
 workflows:
@@ -178,12 +162,8 @@ workflows:
           <<: *cond_on_branch
       - upload_chroma:
           <<: *cond_master
+          # The upload step clears the chromma-app folder; so we need to re-push all contents after its finished
           requires:
-            - build_chroma
-            - test
-      - upload_chroma2:
-          <<: *cond_master
-          requires:
-            - build_chroma
             - upload
+            - build_chroma
             - test
